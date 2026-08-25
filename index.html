@@ -57,22 +57,12 @@
             z-index: 1000;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .nav-links a {
+        .menu-toggle {
+            background: none;
+            border: none;
             color: var(--text-main);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-gold);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         .logo {
@@ -81,6 +71,7 @@
             letter-spacing: 4px;
             font-weight: 700;
             color: var(--text-main);
+            text-decoration: none;
         }
 
         .nav-controls {
@@ -105,10 +96,82 @@
             color: var(--accent-gold);
         }
 
+        /* Sidebar Menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            z-index: 2000;
+            padding: 2rem;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .sidebar-menu a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: block;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .sidebar-menu a:hover {
+            color: var(--accent-gold);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1500;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
         /* Hero Header */
         .hero-header {
             text-align: center;
-            padding: 5rem 2rem 2rem 2rem;
+            padding: 4rem 2rem 2rem 2rem;
         }
 
         .hero-header h1 {
@@ -121,7 +184,15 @@
         .hero-header p {
             color: var(--text-muted);
             font-size: 1.1rem;
-            letter-spacing: 0.5px;
+        }
+
+        /* Views Container */
+        .view-section {
+            display: none;
+        }
+
+        .view-section.active {
+            display: block;
         }
 
         /* Products Grid */
@@ -141,6 +212,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: transform 0.3s, border-color 0.3s;
         }
@@ -206,7 +278,6 @@
             border-radius: 8px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
         }
 
         .size-btn.active {
@@ -239,7 +310,6 @@
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
-            transition: opacity 0.3s, transform 0.2s;
             text-align: center;
             text-decoration: none;
             display: block;
@@ -247,7 +317,50 @@
 
         .order-btn:hover {
             opacity: 0.9;
-            transform: translateY(-2px);
+        }
+
+        /* Single Product Detail View */
+        .detail-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .back-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .detail-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: var(--input-bg);
+        }
+
+        .detail-info h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-desc {
+            color: var(--text-muted);
+            margin: 1.5rem 0;
+            font-size: 1rem;
         }
 
         /* Reviews Section */
@@ -288,19 +401,12 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: var(--text-main);
-            font-size: 0.95rem;
         }
 
         .rating-select {
             display: flex;
             gap: 0.5rem;
             align-items: center;
-        }
-
-        .rating-select label {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-right: 0.5rem;
         }
 
         .star-picker {
@@ -317,7 +423,6 @@
         .star-picker label {
             font-size: 1.5rem;
             color: var(--text-muted);
-            transition: color 0.2s;
             cursor: pointer;
         }
 
@@ -334,8 +439,6 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: var(--text-main);
-            font-size: 0.95rem;
-            resize: vertical;
             min-height: 120px;
         }
 
@@ -346,16 +449,9 @@
             padding: 0.9rem;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 1rem;
             cursor: pointer;
-            transition: opacity 0.3s;
         }
 
-        .submit-review-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Reviews List */
         .reviews-list {
             display: flex;
             flex-direction: column;
@@ -382,43 +478,10 @@
         }
 
         @media (max-width: 768px) {
+            .detail-container { grid-template-columns: 1fr; margin: 1rem; padding: 1.5rem; }
             footer { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
             nav { padding: 1.2rem 1.5rem; }
-            .products-container { padding: 1rem; }
             .form-row { flex-direction: column; }
-            .reviews-section { margin: 1rem; padding: 1.5rem; }
-        }
-
-        .footer-brand h2 {
-            font-family: 'Cinzel', serif;
-            color: var(--text-main);
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand a {
-            color: var(--text-main);
-            text-decoration: none;
-            border-bottom: 1px dashed var(--accent-gold);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links h3 {
-            color: var(--text-main);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
         }
     </style>
 </head>
@@ -426,229 +489,222 @@
 
     <!-- Navigation Bar -->
     <nav>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#products">Perfumes</a></li>
-            <li><a href="#reviews">Customer Reviews</a></li>
-        </ul>
-        <div class="logo">TAHA AZR</div>
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <a href="#" class="logo" onclick="showHome()">TAHA AZR</a>
         <div class="nav-controls">
             <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">☀️ Light Mode</button>
         </div>
     </nav>
 
-    <!-- Hero Header -->
-    <header class="hero-header">
-        <h1>Taha AZR Luxury Perfumes</h1>
-        <p>Exquisite artisanal fragrances crafted with elegance and long-lasting distinction</p>
-    </header>
-
-    <!-- Products Grid -->
-    <main class="products-container" id="products">
-
-        <!-- 1. Dunhil D2 -->
-        <div class="product-card">
-            <div class="product-img-box">
-                <img src="image_b04aa3.jpg" alt="Dunhil D2">
-            </div>
-            <div class="product-content">
-                <div class="product-category">Men</div>
-                <h3 class="product-title">Dunhil D2</h3>
-                <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Dunhil D2', '50ml', '220 AED')">
-                        <strong>50 ml</strong>
-                        <span>220 AED</span>
-                    </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Dunhil D2', '100ml', '320 AED')">
-                        <strong>100 ml</strong>
-                        <span>320 AED</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Dunhil%20D2%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
-            </div>
+    <!-- Sidebar Menu -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3 style="font-family: 'Cinzel', serif;">Menu</h3>
+            <button class="close-sidebar" onclick="toggleSidebar()">✕</button>
         </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" onclick="showHome(); toggleSidebar();">Home / Store</a></li>
+            <li><a href="#" onclick="openProduct('Dunhil D2'); toggleSidebar();">Dunhil D2</a></li>
+            <li><a href="#" onclick="openProduct('Lexus'); toggleSidebar();">Lexus</a></li>
+            <li><a href="#" onclick="openProduct('Bakarath'); toggleSidebar();">Bakarath</a></li>
+            <li><a href="#" onclick="openProduct('D Black'); toggleSidebar();">D Black</a></li>
+            <li><a href="#" onclick="openProduct('Berry'); toggleSidebar();">Berry</a></li>
+            <li><a href="#" onclick="openProduct('Gucci MZ'); toggleSidebar();">Gucci MZ</a></li>
+            <li><a href="#" onclick="openProduct('Fazza'); toggleSidebar();">Fazza</a></li>
+            <li><a href="#reviews" onclick="showHome(); toggleSidebar();">Customer Reviews</a></li>
+        </ul>
+    </div>
 
-        <!-- 2. Lexus -->
-        <div class="product-card">
-            <div class="product-img-box">
-                <img src="image_b04aa7.jpg" alt="Lexus">
-            </div>
-            <div class="product-content">
-                <div class="product-category">Women</div>
-                <h3 class="product-title">Lexus</h3>
-                <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Lexus', '50ml', '220 AED')">
-                        <strong>50 ml</strong>
-                        <span>220 AED</span>
-                    </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Lexus', '100ml', '320 AED')">
-                        <strong>100 ml</strong>
-                        <span>320 AED</span>
-                    </div>
+    <!-- HOME VIEW (Products Grid) -->
+    <div id="homeView" class="view-section active">
+        <header class="hero-header">
+            <h1>Taha AZR Luxury Perfumes</h1>
+            <p>Exquisite artisanal fragrances crafted with elegance and long-lasting distinction</p>
+        </header>
+
+        <main class="products-container">
+            <!-- 1. Dunhil D2 (Men) -->
+            <div class="product-card" onclick="openProduct('Dunhil D2')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80" alt="Dunhil D2">
                 </div>
-                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Lexus%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
-            </div>
-        </div>
-
-        <!-- 3. Bakarath -->
-        <div class="product-card">
-            <div class="product-img-box">
-                <img src="image_b04ac6.jpg" alt="Bakarath">
-            </div>
-            <div class="product-content">
-                <div class="product-category">Men</div>
-                <h3 class="product-title">Bakarath</h3>
-                <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Bakarath', '50ml', '220 AED')">
-                        <strong>50 ml</strong>
-                        <span>220 AED</span>
+                <div class="product-content">
+                    <div class="product-category">Men</div>
+                    <h3 class="product-title">Dunhil D2</h3>
+                    <div class="sizes-selection" onclick="event.stopPropagation()">
+                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
+                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
                     </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Bakarath', '100ml', '320 AED')">
-                        <strong>100 ml</strong>
-                        <span>320 AED</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Bakarath%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
-            </div>
-        </div>
-
-        <!-- 4. D Black -->
-        <div class="product-card">
-            <div class="product-img-box">
-                <img src="image_b04ac9.jpg" alt="D Black">
-            </div>
-            <div class="product-content">
-                <div class="product-category">Men</div>
-                <h3 class="product-title">D Black</h3>
-                <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'D Black', '50ml', '220 AED')">
-                        <strong>50 ml</strong>
-                        <span>220 AED</span>
-                    </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'D Black', '100ml', '320 AED')">
-                        <strong>100 ml</strong>
-                        <span>320 AED</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20D%20Black%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
-            </div>
-        </div>
-
-        <!-- 5. Berry -->
-        <div class="product-card">
-            <div class="product-img-box">
-                <img src="image_b04ae1.jpg" alt="Berry">
-            </div>
-            <div class="product-content">
-                <div class="product-category">Women</div>
-                <h3 class="product-title">Berry</h3>
-                <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Berry', '50ml', '220 AED')">
-                        <strong>50 ml</strong>
-                        <span>220 AED</span>
-                    </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Berry', '100ml', '320 AED')">
-                        <strong>100 ml</strong>
-                        <span>320 AED</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Berry%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
-            </div>
-        </div>
-
-        <!-- 6. Gucci MZ -->
-        <div class="product-card">
-            <div class="product-img-box">
-                <img src="image_b04ae7.jpg" alt="Gucci MZ">
-            </div>
-            <div class="product-content">
-                <div class="product-category">Unisex</div>
-                <h3 class="product-title">Gucci MZ</h3>
-                <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Gucci MZ', '50ml', '220 AED')">
-                        <strong>50 ml</strong>
-                        <span>220 AED</span>
-                    </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Gucci MZ', '100ml', '320 AED')">
-                        <strong>100 ml</strong>
-                        <span>320 AED</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Gucci%20MZ%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
-            </div>
-        </div>
-
-        <!-- 7. Fazza -->
-        <div class="product-card">
-            <div class="product-img-box">
-                <img src="image_b04b00.jpg" alt="Fazza">
-            </div>
-            <div class="product-content">
-                <div class="product-category">Women</div>
-                <h3 class="product-title">Fazza</h3>
-                <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Fazza', '50ml', '220 AED')">
-                        <strong>50 ml</strong>
-                        <span>220 AED</span>
-                    </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Fazza', '100ml', '320 AED')">
-                        <strong>100 ml</strong>
-                        <span>320 AED</span>
-                    </div>
-                </div>
-                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Fazza%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Real Reviews Section -->
-    <section class="reviews-section" id="reviews">
-        <h2>Customer Reviews & Ratings</h2>
-        
-        <form class="review-form" id="reviewForm" onsubmit="submitReview(event)">
-            <div class="form-row">
-                <input type="text" id="reviewerName" placeholder="Your Name" required>
-                <div class="rating-select">
-                    <label>Rating:</label>
-                    <div class="star-picker">
-                        <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
-                        <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                        <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                        <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                        <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-                    </div>
+                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Dunhil%20D2" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
                 </div>
             </div>
-            <textarea id="reviewComment" placeholder="Write your honest review about our perfumes..." required></textarea>
-            <button type="submit" class="submit-review-btn">Post Review</button>
-        </form>
 
-        <div class="reviews-list" id="reviewsList">
-            <!-- Dynamic reviews will appear here -->
+            <!-- 2. Lexus (Women) -->
+            <div class="product-card" onclick="openProduct('Lexus')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80" alt="Lexus">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Women</div>
+                    <h3 class="product-title">Lexus</h3>
+                    <div class="sizes-selection" onclick="event.stopPropagation()">
+                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
+                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
+                    </div>
+                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Lexus" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- 3. Bakarath (Men - برج خليفة الذهبي) -->
+            <div class="product-card" onclick="openProduct('Bakarath')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80" alt="Bakarath">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Men</div>
+                    <h3 class="product-title">Bakarath</h3>
+                    <div class="sizes-selection" onclick="event.stopPropagation()">
+                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
+                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
+                    </div>
+                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Bakarath" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- 4. D Black (Men - برج خليفة الليلي) -->
+            <div class="product-card" onclick="openProduct('D Black')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&q=80" alt="D Black">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Men</div>
+                    <h3 class="product-title">D Black</h3>
+                    <div class="sizes-selection" onclick="event.stopPropagation()">
+                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
+                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
+                    </div>
+                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20D%20Black" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- 5. Berry (Women - التوت والفراولة) -->
+            <div class="product-card" onclick="openProduct('Berry')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80" alt="Berry">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Women</div>
+                    <h3 class="product-title">Berry</h3>
+                    <div class="sizes-selection" onclick="event.stopPropagation()">
+                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
+                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
+                    </div>
+                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Berry" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- 6. Gucci MZ (Unisex - العطر مع إضاءة المدينة) -->
+            <div class="product-card" onclick="openProduct('Gucci MZ')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Gucci MZ">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Men & Women</div>
+                    <h3 class="product-title">Gucci MZ</h3>
+                    <div class="sizes-selection" onclick="event.stopPropagation()">
+                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
+                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
+                    </div>
+                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Gucci%20MZ" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- 7. Fazza (Women - عطر فزاع) -->
+            <div class="product-card" onclick="openProduct('Fazza')">
+                <div class="product-img-box">
+                    <img src="https://images.unsplash.com/photo-1563178406-4cdc2923acbc?auto=format&fit=crop&w=600&q=80" alt="Fazza">
+                </div>
+                <div class="product-content">
+                    <div class="product-category">Women</div>
+                    <h3 class="product-title">Fazza</h3>
+                    <div class="sizes-selection" onclick="event.stopPropagation()">
+                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
+                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
+                    </div>
+                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Fazza" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Real Reviews Section -->
+        <section class="reviews-section" id="reviews">
+            <h2>Customer Reviews & Ratings</h2>
+            <form class="review-form" id="reviewForm" onsubmit="submitReview(event)">
+                <div class="form-row">
+                    <input type="text" id="reviewerName" placeholder="Your Name" required>
+                    <div class="rating-select">
+                        <label>Rating:</label>
+                        <div class="star-picker">
+                            <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                        </div>
+                    </div>
+                </div>
+                <textarea id="reviewComment" placeholder="Write your honest review about our perfumes..." required></textarea>
+                <button type="submit" class="submit-review-btn">Post Review</button>
+            </form>
+            <div class="reviews-list" id="reviewsList"></div>
+        </section>
+    </div>
+
+    <!-- DETAIL VIEW (Single Product Page) -->
+    <div id="detailView" class="view-section">
+        <div style="max-width: 900px; margin: 2rem auto 0 auto; padding: 0 2rem;">
+            <button class="back-btn" onclick="showHome()">← Back to Store</button>
         </div>
-    </section>
+        <div class="detail-container" id="detailContent">
+            <!-- Dynamic product detail injected via JS -->
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="footer-brand">
             <h2>TAHA AZR PERFUMES</h2>
             <p>Luxury fragrances crafted for unforgettable moments.</p>
-            <p style="margin-top: 1rem;"><a href="https://www.instagram.com/mohmmadtaha_313" target="_blank">Instagram: @mohmmadtaha_313</a></p>
+            <p style="margin-top: 1rem;"><a href="https://www.instagram.com/mohmmadtaha_313" target="_blank" style="color: var(--accent-gold); text-decoration: none;">Instagram: @mohmmadtaha_313</a></p>
         </div>
         <div class="footer-links">
             <h3>Quick Links</h3>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#products">Perfumes</a></li>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><a href="https://www.instagram.com/mohmmadtaha_313" target="_blank">Instagram</a></li>
+                <li><a href="#" onclick="showHome()" style="color: var(--text-muted); text-decoration: none;">Home</a></li>
+                <li><a href="#reviews" onclick="showHome()" style="color: var(--text-muted); text-decoration: none;">Reviews</a></li>
+                <li><a href="https://www.instagram.com/mohmmadtaha_313" target="_blank" style="color: var(--text-muted); text-decoration: none;">Instagram</a></li>
             </ul>
         </div>
     </footer>
 
     <script>
-        // Dark / Light Theme Toggle Function
+        // Database of perfumes with updated categories and working images
+        const perfumesData = {
+            "Dunhil D2": { name: "Dunhil D2", category: "Men", img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80", desc: "A powerful and sophisticated masculine fragrance combining rich woody notes with modern elegance." },
+            "Lexus": { name: "Lexus", category: "Women", img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80", desc: "An alluring feminine fragrance filled with delicate floral essences and warm amber undertones." },
+            "Bakarath": { name: "Bakarath", category: "Men", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80", desc: "An iconic rich oriental fragrance with unmatched longevity and magnetic presence, inspired by golden luxury." },
+            "D Black": { name: "D Black", category: "Men", img: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&q=80", desc: "A bold night scent designed for the confident man who commands attention under the night skyline." },
+            "Berry": { name: "Berry", category: "Women", img: "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80", desc: "A sweet, fruity masterpiece bursting with juicy strawberry and wild berry accords." },
+            "Gucci MZ": { name: "Gucci MZ", category: "Men & Women", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80", desc: "A versatile, universal fragrance that seamlessly blends striking spicy and smooth notes suitable for both men and women." },
+            "Fazza": { name: "Fazza", category: "Women", img: "https://images.unsplash.com/photo-1563178406-4cdc2923acbc?auto=format&fit=crop&w=600&q=80", desc: "A royal feminine scent inspired by authentic heritage and contemporary luxury." }
+        };
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
         function toggleTheme() {
             const body = document.body;
             const btn = document.getElementById('themeToggleBtn');
@@ -661,19 +717,61 @@
             }
         }
 
-        // Size and Price Update Function
-        function updatePrice(element, perfumeName, size, price) {
-            const card = element.closest('.product-card');
-            card.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
-            element.classList.add('active');
+        function showHome() {
+            document.getElementById('homeView').classList.add('active');
+            document.getElementById('detailView').classList.remove('active');
+            window.scrollTo(0, 0);
+        }
 
-            const orderBtn = card.querySelector('.order-btn');
-            const encodedText = encodeURIComponent(`Hello, I would like to order ${perfumeName} perfume (${size}) for ${price}`);
-            orderBtn.href = `https://wa.me/971544741541?text=${encodedText}`;
+        function openProduct(productName) {
+            const p = perfumesData[productName];
+            if (!p) return;
+
+            const detailContainer = document.getElementById('detailContent');
+            detailContainer.innerHTML = `
+                <div>
+                    <img src="${p.img}" alt="${p.name}" class="detail-img">
+                </div>
+                <div class="detail-info">
+                    <div class="product-category">${p.category}</div>
+                    <h2>${p.name}</h2>
+                    <p class="detail-desc">${p.desc}</p>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-muted);">Select Size:</label>
+                        <div class="sizes-selection">
+                            <div class="size-btn active" id="detSize50" onclick="updateDetailPrice('50ml', '220 AED', '${p.name}')">
+                                <strong>50 ml</strong>
+                                <span>220 AED</span>
+                            </div>
+                            <div class="size-btn" id="detSize100" onclick="updateDetailPrice('100ml', '320 AED', '${p.name}')">
+                                <strong>100 ml</strong>
+                                <span>320 AED</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a id="detOrderBtn" href="https://wa.me/971544741541?text=${encodeURIComponent('Hello, I would like to order ' + p.name + ' (50ml) for 220 AED')}" class="order-btn" style="padding: 1.1rem; font-size: 1.05rem;">Order via WhatsApp (220 AED)</a>
+                </div>
+            `;
+
+            document.getElementById('homeView').classList.remove('active');
+            document.getElementById('detailView').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function updateDetailPrice(size, price, perfumeName) {
+            document.getElementById('detSize50').classList.remove('active');
+            document.getElementById('detSize100').classList.remove('active');
+            if (size === '50ml') document.getElementById('detSize50').classList.add('active');
+            else document.getElementById('detSize100').classList.add('active');
+
+            const orderBtn = document.getElementById('detOrderBtn');
+            orderBtn.href = `https://wa.me/971544741541?text=${encodeURIComponent('Hello, I would like to order ' + perfumeName + ' (' + size + ') for ' + price)}`;
             orderBtn.textContent = `Order via WhatsApp (${price})`;
         }
 
-        // Real Reviews Management using localStorage
+        // Reviews Management
         document.addEventListener('DOMContentLoaded', loadReviews);
 
         function submitReview(event) {
@@ -682,7 +780,7 @@
             const rating = document.querySelector('input[name="rating"]:checked').value;
             const comment = document.getElementById('reviewComment').value.trim();
 
-            const newReview = { name, rating: parseInt(rating), comment, date: new Date().toLocaleDateString() };
+            const newReview = { name, rating: parseInt(rating), comment };
 
             let reviews = JSON.parse(localStorage.getItem('taha_azr_reviews')) || [];
             reviews.unshift(newReview);
@@ -694,12 +792,13 @@
 
         function loadReviews() {
             const container = document.getElementById('reviewsList');
+            if (!container) return;
+
             let reviews = JSON.parse(localStorage.getItem('taha_azr_reviews'));
-            
             if (!reviews || reviews.length === 0) {
                 reviews = [
-                    { name: 'Ahmed Al-Maktoum', rating: 5, comment: 'Absolute masterpiece! The longevity of Dunhil D2 is incredible.', date: 'Recent' },
-                    { name: 'Fatima Al-Zahra', rating: 5, comment: 'Lexus and Berry smell heavenly. Received so many compliments!', date: 'Recent' }
+                    { name: 'Ahmed Al-Maktoum', rating: 5, comment: 'Absolute masterpiece! The longevity of Dunhil D2 and Bakarath is incredible.' },
+                    { name: 'Fatima Al-Zahra', rating: 5, comment: 'Berry and Lexus smell heavenly. Received so many compliments!' }
                 ];
                 localStorage.setItem('taha_azr_reviews', JSON.stringify(reviews));
             }
@@ -724,6 +823,5 @@
             return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
     </script>
-
 </body>
 </html>
