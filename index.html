@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taha AZR Perfumes - المتجر الرسمي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Taha AZR Perfumes - Official Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0b0b0b;
@@ -15,13 +15,27 @@
             --accent-gold: #d4af37;
             --btn-bg: #e5e5e5;
             --btn-text: #000000;
+            --input-bg: #1a1a1a;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --text-main: #1a202c;
+            --text-muted: #718096;
+            --accent-gold: #b7791f;
+            --btn-bg: #1a202c;
+            --btn-text: #ffffff;
+            --input-bg: #edf2f7;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
         body {
@@ -30,7 +44,7 @@
             line-height: 1.6;
         }
 
-        /* شريط التنقل العلوي */
+        /* Navigation Bar */
         nav {
             display: flex;
             justify-content: space-between;
@@ -54,7 +68,7 @@
         .nav-links a {
             color: var(--text-main);
             text-decoration: none;
-            transition: color 0.3s;
+            font-weight: 500;
         }
 
         .nav-links a:hover {
@@ -62,44 +76,59 @@
         }
 
         .logo {
-            font-family: 'Amiri', serif;
+            font-family: 'Cinzel', serif;
             font-size: 1.5rem;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
+            font-weight: 700;
             color: var(--text-main);
-            text-align: center;
         }
 
-        .nav-icons {
+        .nav-controls {
             display: flex;
             gap: 1.5rem;
-            font-size: 1.1rem;
-            cursor: pointer;
+            align-items: center;
         }
 
-        /* رأس الصفحة */
+        .theme-toggle-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* Hero Header */
         .hero-header {
             text-align: center;
-            padding: 4rem 2rem 2rem 2rem;
+            padding: 5rem 2rem 2rem 2rem;
         }
 
         .hero-header h1 {
-            font-family: 'Amiri', serif;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 2px;
         }
 
         .hero-header p {
             color: var(--text-muted);
             font-size: 1.1rem;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        /* شبكة المنتجات */
+        /* Products Grid */
         .products-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 2rem 5rem 2rem;
+            padding: 2rem 2rem 4rem 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2.5rem;
@@ -108,21 +137,22 @@
         .product-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: transform 0.3s, border-color 0.3s;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
             border-color: var(--accent-gold);
         }
 
         .product-img-box {
             height: 380px;
-            background: #1a1a1a;
+            background: var(--input-bg);
             position: relative;
             overflow: hidden;
         }
@@ -139,27 +169,29 @@
         }
 
         .product-content {
-            padding: 1.5rem;
+            padding: 1.8rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
         .product-title {
-            font-family: 'Amiri', serif;
-            font-size: 1.6rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
             margin-bottom: 0.3rem;
+            font-weight: 600;
         }
 
         .product-category {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-bottom: 1.2rem;
+            font-weight: 600;
         }
 
-        /* خيارات الحجم والأسعار */
+        /* Sizes & Prices */
         .sizes-selection {
             display: flex;
             gap: 0.8rem;
@@ -170,8 +202,8 @@
             flex: 1;
             background: var(--bg-color);
             border: 1px solid var(--border-color);
-            padding: 0.6rem;
-            border-radius: 6px;
+            padding: 0.7rem;
+            border-radius: 8px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
@@ -179,7 +211,7 @@
 
         .size-btn.active {
             border-color: var(--accent-gold);
-            background: rgba(212, 175, 55, 0.05);
+            background: rgba(212, 175, 55, 0.08);
         }
 
         .size-btn strong {
@@ -192,31 +224,152 @@
             font-size: 0.8rem;
             color: var(--accent-gold);
             margin-top: 0.2rem;
+            font-weight: 600;
         }
 
-        /* زر الشراء */
+        /* Order Button */
         .order-btn {
             margin-top: auto;
             width: 100%;
             background: var(--btn-bg);
             color: var(--btn-text);
             border: none;
-            padding: 0.9rem;
+            padding: 0.95rem;
             font-size: 0.95rem;
             font-weight: 600;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: opacity 0.3s, transform 0.2s;
             text-align: center;
             text-decoration: none;
             display: block;
         }
 
         .order-btn:hover {
-            background: #ffffff;
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
 
-        /* الفوتر */
+        /* Reviews Section */
+        .reviews-section {
+            max-width: 900px;
+            margin: 2rem auto 5rem auto;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+        }
+
+        .reviews-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .review-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row input {
+            flex: 1;
+            padding: 0.9rem 1.2rem;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .rating-select {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .rating-select label {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-right: 0.5rem;
+        }
+
+        .star-picker {
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .star-picker input {
+            display: none;
+        }
+
+        .star-picker label {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .star-picker input:checked ~ label,
+        .star-picker label:hover,
+        .star-picker label:hover ~ label {
+            color: var(--accent-gold);
+        }
+
+        .review-form textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-review-btn {
+            background: var(--accent-gold);
+            color: #000;
+            border: none;
+            padding: 0.9rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .submit-review-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Reviews List */
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
             padding: 4rem 3rem;
@@ -229,15 +382,17 @@
         }
 
         @media (max-width: 768px) {
-            footer { grid-template-columns: 1fr; padding: 2rem 1rem; }
-            nav { padding: 1rem; }
+            footer { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+            nav { padding: 1.2rem 1.5rem; }
             .products-container { padding: 1rem; }
+            .form-row { flex-direction: column; }
+            .reviews-section { margin: 1rem; padding: 1.5rem; }
         }
 
         .footer-brand h2 {
-            font-family: 'Amiri', serif;
+            font-family: 'Cinzel', serif;
             color: var(--text-main);
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             margin-bottom: 1rem;
         }
 
@@ -267,29 +422,28 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
 
-    <!-- شريط التنقل -->
+    <!-- Navigation Bar -->
     <nav>
         <ul class="nav-links">
-            <li><a href="#">الرئيسية</a></li>
-            <li><a href="#products">العطور (رجالي ونسائي)</a></li>
-            <li><a href="https://www.instagram.com/mohmmadtaha_313" target="_blank">إنستغرام</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#products">Perfumes</a></li>
+            <li><a href="#reviews">Customer Reviews</a></li>
         </ul>
-        <div class="logo">Taha AZR</div>
-        <div class="nav-icons">
-            <span>✨</span>
-            <span>🛒</span>
+        <div class="logo">TAHA AZR</div>
+        <div class="nav-controls">
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">☀️ Light Mode</button>
         </div>
     </nav>
 
-    <!-- رأس الصفحة -->
+    <!-- Hero Header -->
     <header class="hero-header">
-        <h1>تشكيلة عطور Taha AZR الفاخرة</h1>
-        <p>عطور رجالية ونسائية مميزة بتدرجات عطرية فريدة وثبات عالي</p>
+        <h1>Taha AZR Luxury Perfumes</h1>
+        <p>Exquisite artisanal fragrances crafted with elegance and long-lasting distinction</p>
     </header>
 
-    <!-- قائمة المنتجات -->
+    <!-- Products Grid -->
     <main class="products-container" id="products">
 
         <!-- 1. Dunhil D2 -->
@@ -298,19 +452,19 @@
                 <img src="image_b04aa3.jpg" alt="Dunhil D2">
             </div>
             <div class="product-content">
-                <div class="product-category">رجالي ونسائي</div>
+                <div class="product-category">Men</div>
                 <h3 class="product-title">Dunhil D2</h3>
                 <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Dunhil D2', '50ml', '220 درهم')">
+                    <div class="size-btn active" onclick="updatePrice(this, 'Dunhil D2', '50ml', '220 AED')">
                         <strong>50 ml</strong>
-                        <span>220 درهم</span>
+                        <span>220 AED</span>
                     </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Dunhil D2', '100ml', '320 درهم')">
+                    <div class="size-btn" onclick="updatePrice(this, 'Dunhil D2', '100ml', '320 AED')">
                         <strong>100 ml</strong>
-                        <span>320 درهم</span>
+                        <span>320 AED</span>
                     </div>
                 </div>
-                <a href="https://wa.me/971544741541?text=مرحباً، أرغب في طلب عطر Dunhil D2 بحجم 50ml بسعر 220 درهم" class="order-btn" id="btn-Dunhil">طلب عبر واتساب (220 درهم)</a>
+                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Dunhil%20D2%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
             </div>
         </div>
 
@@ -320,19 +474,19 @@
                 <img src="image_b04aa7.jpg" alt="Lexus">
             </div>
             <div class="product-content">
-                <div class="product-category">رجالي ونسائي</div>
+                <div class="product-category">Women</div>
                 <h3 class="product-title">Lexus</h3>
                 <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Lexus', '50ml', '220 درهم')">
+                    <div class="size-btn active" onclick="updatePrice(this, 'Lexus', '50ml', '220 AED')">
                         <strong>50 ml</strong>
-                        <span>220 درهم</span>
+                        <span>220 AED</span>
                     </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Lexus', '100ml', '320 درهم')">
+                    <div class="size-btn" onclick="updatePrice(this, 'Lexus', '100ml', '320 AED')">
                         <strong>100 ml</strong>
-                        <span>320 درهم</span>
+                        <span>320 AED</span>
                     </div>
                 </div>
-                <a href="https://wa.me/971544741541?text=مرحباً، أرغب في طلب عطر Lexus بحجم 50ml بسعر 220 درهم" class="order-btn" id="btn-Lexus">طلب عبر واتساب (220 درهم)</a>
+                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Lexus%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
             </div>
         </div>
 
@@ -342,19 +496,19 @@
                 <img src="image_b04ac6.jpg" alt="Bakarath">
             </div>
             <div class="product-content">
-                <div class="product-category">رجالي ونسائي</div>
+                <div class="product-category">Men</div>
                 <h3 class="product-title">Bakarath</h3>
                 <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Bakarath', '50ml', '220 درهم')">
+                    <div class="size-btn active" onclick="updatePrice(this, 'Bakarath', '50ml', '220 AED')">
                         <strong>50 ml</strong>
-                        <span>220 درهم</span>
+                        <span>220 AED</span>
                     </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Bakarath', '100ml', '320 درهم')">
+                    <div class="size-btn" onclick="updatePrice(this, 'Bakarath', '100ml', '320 AED')">
                         <strong>100 ml</strong>
-                        <span>320 درهم</span>
+                        <span>320 AED</span>
                     </div>
                 </div>
-                <a href="https://wa.me/971544741541?text=مرحباً، أرغب في طلب عطر Bakarath بحجم 50ml بسعر 220 درهم" class="order-btn" id="btn-Bakarath">طلب عبر واتساب (220 درهم)</a>
+                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Bakarath%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
             </div>
         </div>
 
@@ -364,19 +518,19 @@
                 <img src="image_b04ac9.jpg" alt="D Black">
             </div>
             <div class="product-content">
-                <div class="product-category">رجالي ونسائي</div>
+                <div class="product-category">Men</div>
                 <h3 class="product-title">D Black</h3>
                 <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'D Black', '50ml', '220 درهم')">
+                    <div class="size-btn active" onclick="updatePrice(this, 'D Black', '50ml', '220 AED')">
                         <strong>50 ml</strong>
-                        <span>220 درهم</span>
+                        <span>220 AED</span>
                     </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'D Black', '100ml', '320 درهم')">
+                    <div class="size-btn" onclick="updatePrice(this, 'D Black', '100ml', '320 AED')">
                         <strong>100 ml</strong>
-                        <span>320 درهم</span>
+                        <span>320 AED</span>
                     </div>
                 </div>
-                <a href="https://wa.me/971544741541?text=مرحباً، أرغب في طلب عطر D Black بحجم 50ml بسعر 220 درهم" class="order-btn" id="btn-D">طلب عبر واتساب (220 درهم)</a>
+                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20D%20Black%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
             </div>
         </div>
 
@@ -386,19 +540,19 @@
                 <img src="image_b04ae1.jpg" alt="Berry">
             </div>
             <div class="product-content">
-                <div class="product-category">رجالي ونسائي</div>
+                <div class="product-category">Women</div>
                 <h3 class="product-title">Berry</h3>
                 <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Berry', '50ml', '220 درهم')">
+                    <div class="size-btn active" onclick="updatePrice(this, 'Berry', '50ml', '220 AED')">
                         <strong>50 ml</strong>
-                        <span>220 درهم</span>
+                        <span>220 AED</span>
                     </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Berry', '100ml', '320 درهم')">
+                    <div class="size-btn" onclick="updatePrice(this, 'Berry', '100ml', '320 AED')">
                         <strong>100 ml</strong>
-                        <span>320 درهم</span>
+                        <span>320 AED</span>
                     </div>
                 </div>
-                <a href="https://wa.me/971544741541?text=مرحباً، أرغب في طلب عطر Berry بحجم 50ml بسعر 220 درهم" class="order-btn" id="btn-Berry">طلب عبر واتساب (220 درهم)</a>
+                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Berry%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
             </div>
         </div>
 
@@ -408,19 +562,19 @@
                 <img src="image_b04ae7.jpg" alt="Gucci MZ">
             </div>
             <div class="product-content">
-                <div class="product-category">رجالي ونسائي</div>
+                <div class="product-category">Unisex</div>
                 <h3 class="product-title">Gucci MZ</h3>
                 <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Gucci MZ', '50ml', '220 درهم')">
+                    <div class="size-btn active" onclick="updatePrice(this, 'Gucci MZ', '50ml', '220 AED')">
                         <strong>50 ml</strong>
-                        <span>220 درهم</span>
+                        <span>220 AED</span>
                     </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Gucci MZ', '100ml', '320 درهم')">
+                    <div class="size-btn" onclick="updatePrice(this, 'Gucci MZ', '100ml', '320 AED')">
                         <strong>100 ml</strong>
-                        <span>320 درهم</span>
+                        <span>320 AED</span>
                     </div>
                 </div>
-                <a href="https://wa.me/971544741541?text=مرحباً، أرغب في طلب عطر Gucci MZ بحجم 50ml بسعر 220 درهم" class="order-btn" id="btn-Gucci">طلب عبر واتساب (220 درهم)</a>
+                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Gucci%20MZ%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
             </div>
         </div>
 
@@ -430,52 +584,144 @@
                 <img src="image_b04b00.jpg" alt="Fazza">
             </div>
             <div class="product-content">
-                <div class="product-category">رجالي ونسائي</div>
+                <div class="product-category">Women</div>
                 <h3 class="product-title">Fazza</h3>
                 <div class="sizes-selection">
-                    <div class="size-btn active" onclick="updatePrice(this, 'Fazza', '50ml', '220 درهم')">
+                    <div class="size-btn active" onclick="updatePrice(this, 'Fazza', '50ml', '220 AED')">
                         <strong>50 ml</strong>
-                        <span>220 درهم</span>
+                        <span>220 AED</span>
                     </div>
-                    <div class="size-btn" onclick="updatePrice(this, 'Fazza', '100ml', '320 درهم')">
+                    <div class="size-btn" onclick="updatePrice(this, 'Fazza', '100ml', '320 AED')">
                         <strong>100 ml</strong>
-                        <span>320 درهم</span>
+                        <span>320 AED</span>
                     </div>
                 </div>
-                <a href="https://wa.me/971544741541?text=مرحباً، أرغب في طلب عطر Fazza بحجم 50ml بسعر 220 درهم" class="order-btn" id="btn-Fazza">طلب عبر واتساب (220 درهم)</a>
+                <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Fazza%20perfume%20(50ml)%20for%20220%20AED" class="order-btn">Order via WhatsApp (220 AED)</a>
             </div>
         </div>
 
     </main>
 
-    <!-- الفوتر -->
+    <!-- Real Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <h2>Customer Reviews & Ratings</h2>
+        
+        <form class="review-form" id="reviewForm" onsubmit="submitReview(event)">
+            <div class="form-row">
+                <input type="text" id="reviewerName" placeholder="Your Name" required>
+                <div class="rating-select">
+                    <label>Rating:</label>
+                    <div class="star-picker">
+                        <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                    </div>
+                </div>
+            </div>
+            <textarea id="reviewComment" placeholder="Write your honest review about our perfumes..." required></textarea>
+            <button type="submit" class="submit-review-btn">Post Review</button>
+        </form>
+
+        <div class="reviews-list" id="reviewsList">
+            <!-- Dynamic reviews will appear here -->
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="footer-brand">
-            <h2>Taha AZR Perfumes</h2>
-            <p>تشكيلة عطور فاخرة رجالية ونسائية مصممة بعناية فائقة.</p>
-            <p style="margin-top: 1rem;"><a href="https://www.instagram.com/mohmmadtaha_313" target="_blank">تابعنا على إنستغرام: @mohmmadtaha_313</a></p>
+            <h2>TAHA AZR PERFUMES</h2>
+            <p>Luxury fragrances crafted for unforgettable moments.</p>
+            <p style="margin-top: 1rem;"><a href="https://www.instagram.com/mohmmadtaha_313" target="_blank">Instagram: @mohmmadtaha_313</a></p>
         </div>
         <div class="footer-links">
-            <h3>روابط سريعة</h3>
+            <h3>Quick Links</h3>
             <ul>
-                <li><a href="#">الرئيسية</a></li>
-                <li><a href="#products">العطور</a></li>
-                <li><a href="https://www.instagram.com/mohmmadtaha_313" target="_blank">إنستغرام</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#products">Perfumes</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="https://www.instagram.com/mohmmadtaha_313" target="_blank">Instagram</a></li>
             </ul>
         </div>
     </footer>
 
     <script>
+        // Dark / Light Theme Toggle Function
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggleBtn');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                btn.textContent = '🌙 Dark Mode';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                btn.textContent = '☀️ Light Mode';
+            }
+        }
+
+        // Size and Price Update Function
         function updatePrice(element, perfumeName, size, price) {
-            // تحديث الصنف النشط داخل البطاقة
             const card = element.closest('.product-card');
             card.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
             element.classList.add('active');
 
-            // تحديث رابط الواتساب للأزرار
             const orderBtn = card.querySelector('.order-btn');
-            orderBtn.href = `https://wa.me/971544741541?text=${encodeURIComponent('مرحباً، أرغب في طلب عطر ' + perfumeName + ' بحجم ' + size + ' بسعر ' + price)}`;
-            orderBtn.textContent = `طلب عبر واتساب (${price})`;
+            const encodedText = encodeURIComponent(`Hello, I would like to order ${perfumeName} perfume (${size}) for ${price}`);
+            orderBtn.href = `https://wa.me/971544741541?text=${encodedText}`;
+            orderBtn.textContent = `Order via WhatsApp (${price})`;
+        }
+
+        // Real Reviews Management using localStorage
+        document.addEventListener('DOMContentLoaded', loadReviews);
+
+        function submitReview(event) {
+            event.preventDefault();
+            const name = document.getElementById('reviewerName').value.trim();
+            const rating = document.querySelector('input[name="rating"]:checked').value;
+            const comment = document.getElementById('reviewComment').value.trim();
+
+            const newReview = { name, rating: parseInt(rating), comment, date: new Date().toLocaleDateString() };
+
+            let reviews = JSON.parse(localStorage.getItem('taha_azr_reviews')) || [];
+            reviews.unshift(newReview);
+            localStorage.setItem('taha_azr_reviews', JSON.stringify(reviews));
+
+            document.getElementById('reviewForm').reset();
+            loadReviews();
+        }
+
+        function loadReviews() {
+            const container = document.getElementById('reviewsList');
+            let reviews = JSON.parse(localStorage.getItem('taha_azr_reviews'));
+            
+            if (!reviews || reviews.length === 0) {
+                reviews = [
+                    { name: 'Ahmed Al-Maktoum', rating: 5, comment: 'Absolute masterpiece! The longevity of Dunhil D2 is incredible.', date: 'Recent' },
+                    { name: 'Fatima Al-Zahra', rating: 5, comment: 'Lexus and Berry smell heavenly. Received so many compliments!', date: 'Recent' }
+                ];
+                localStorage.setItem('taha_azr_reviews', JSON.stringify(reviews));
+            }
+
+            container.innerHTML = '';
+            reviews.forEach(rev => {
+                const stars = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
+                const card = document.createElement('div');
+                card.className = 'review-card';
+                card.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span style="font-weight: 700; font-size: 1.05rem;">${escapeHtml(rev.name)}</span>
+                        <span style="color: var(--accent-gold); font-size: 1.1rem;">${stars}</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">${escapeHtml(rev.comment)}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
     </script>
 
