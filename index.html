@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taha AZR Perfumes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>VERE LUNE - Taha AZR Perfumes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0c0c0c;
-            --container-bg: #141414;
-            --gold: #c5a059;
-            --gold-light: #e6c584;
-            --text-main: #f9f9f9;
-            --text-muted: #888888;
-            --border: #262626;
+            --bg-color: #0b0b0b;
+            --card-bg: #141414;
+            --border-color: #222222;
+            --text-main: #ffffff;
+            --text-muted: #999999;
+            --accent-gold: #d4af37;
+            --btn-bg: #e5e5e5;
+            --btn-text: #000000;
         }
 
         * {
@@ -26,159 +27,446 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* شريط التنقل العلوي */
+        nav {
             display: flex;
-            flex-direction: column;
-        }
-
-        /* شريط العنوان العلوي للبراند */
-        header {
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid var(--border);
-            text-align: center;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            border-bottom: 1px solid var(--border-color);
             background: var(--bg-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        header h2 {
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .logo {
             font-family: 'Amiri', serif;
             font-size: 1.5rem;
-            color: var(--gold);
-            letter-spacing: 3px;
-            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--text-main);
+            text-align: center;
         }
 
-        /* حاوية المنتج الرئيسية */
-        .product-container {
-            max-width: 1100px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        /* مسار الصفحة (Breadcrumbs) */
+        .breadcrumbs {
+            padding: 1.5rem 3rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumbs a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        /* قسم المنتج الرئيسي */
+        .main-product-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem 4rem 3rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
-            flex: 1;
         }
 
         @media (max-width: 768px) {
-            .product-container {
+            .main-product-section {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-                margin: 1.5rem auto;
+                padding: 0 1rem 2rem 1rem;
             }
+            nav { padding: 1rem; }
         }
 
-        /* قسم الصورة (شبيه بـ Verelune) */
-        .product-image-wrapper {
-            background: var(--container-bg);
-            border: 1px solid var(--border);
+        .product-image-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            overflow: hidden;
             height: 550px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .product-image-wrapper img {
+        .product-image-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        /* قسم التفاصيل */
-        .product-details {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .rotate-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
         }
 
-        .product-title {
+        .product-info h1 {
             font-family: 'Amiri', serif;
-            font-size: 2.8rem;
-            color: var(--text-main);
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            font-size: 2.5rem;
+            margin-bottom: 0.3rem;
         }
 
-        .product-subtitle {
-            color: var(--gold);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
-        }
-
-        .product-description {
+        .product-brand {
             color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            border-right: 2px solid var(--gold);
-            padding-right: 1rem;
-        }
-
-        /* زر الطلب الفاخر */
-        .action-btn {
-            display: block;
-            width: 100%;
-            background-color: var(--gold);
-            color: #000;
-            text-align: center;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 4px;
-            text-decoration: none;
+            font-size: 0.95rem;
             letter-spacing: 1px;
-            transition: background 0.3s ease, transform 0.2s ease;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
         }
 
-        .action-btn:hover {
-            background-color: var(--gold-light);
-            transform: translateY(-2px);
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* الأحجام */
+        .section-title {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .sizes-box {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .size-option {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .size-option.active {
+            border-color: var(--text-main);
+        }
+
+        .size-option span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* الهرم العطري */
+        .fragrance-notes {
+            margin-bottom: 2.5rem;
+        }
+
+        .notes-category {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .notes-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+        }
+
+        /* زر الإضافة للسلة أو الطلب */
+        .add-to-cart-btn {
+            width: 100%;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #ffffff;
+        }
+
+        /* قسم المنتجات المشابهة (You may also like) */
+        .related-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .related-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 1.5rem;
+        }
+
+        .related-img {
+            height: 250px;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .related-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .related-card h4 {
+            font-family: 'Amiri', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .related-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
         /* الفوتر */
         footer {
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 3rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            background: var(--bg-color);
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            footer { grid-template-columns: 1fr; padding: 2rem 1rem; }
+        }
+
+        .footer-brand h2 {
+            font-family: 'Amiri', serif;
+            color: var(--text-main);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links h3 {
+            color: var(--text-main);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- اسم البراند بالأعلى -->
-    <header>
-        <h2>Taha AZR Perfumes</h2>
-    </header>
+    <!-- شريط التنقل -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">MEN</a></li>
+            <li><a href="#">WOMEN</a></li>
+            <li><a href="#">SHOP</a></li>
+            <li><a href="#">ABOUT</a></li>
+        </ul>
+        <div class="logo">VERE LUNE</div>
+        <div class="nav-icons">
+            <span>☀️</span>
+            <span>🛒</span>
+        </div>
+    </nav>
 
-    <!-- تفاصيل العطر الفردي -->
-    <div class="product-container">
-        <!-- صورة العطر البارزة -->
-        <div class="product-image-wrapper">
-            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1000&q=80" alt="اسم العطر">
+    <!-- مسار الصفحة -->
+    <div class="breadcrumbs">
+        <a href="#">Shop</a> / <a href="#">Women</a> / Libre
+    </div>
+
+    <!-- المنتج الرئيسي -->
+    <div class="main-product-section">
+        <div class="product-image-box">
+            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=800&q=80" alt="Libre Perfume">
+            <div class="rotate-badge">Rotate 360°</div>
         </div>
 
-        <!-- تفاصيل ومعلومات العطر -->
-        <div class="product-details">
-            <h1 class="product-title">اسم العطر الخاص بك</h1>
-            <div class="product-subtitle">إصدار فاخر حصري</div>
-            
-            <p class="product-description">
-                عطر استثنائي صُمم خصيصاً ليعكس الحضور الطاغي والفخامة المطلقة. مزيج ساحر يترك انطباعاً لا يُنسى ويدوم طويلاً طوال اليوم.
-            </p>
+        <div class="product-info">
+            <h1>Libre</h1>
+            <div class="product-brand">YVES SAINT LAURENT</div>
+            <p class="product-desc">Lavender and orange blossom over warm vanilla. Bold, free, and instantly recognizable.</p>
 
-            <!-- زر الطلب المباشر -->
-            <a href="https://wa.me/966500000000?text=مرحباً، أرغب في طلب عطر (اسم العطر)" class="action-btn" target="_blank">
-                اطلب العطر الآن
+            <div class="section-title">Size</div>
+            <div class="sizes-box">
+                <div class="size-option active">
+                    <strong>50ml</strong>
+                </div>
+                <div class="size-option">
+                    <strong>100ml</strong>
+                </div>
+            </div>
+
+            <div class="section-title">Fragrance Notes</div>
+            <div class="fragrance-notes">
+                <div class="notes-category">TOP NOTES</div>
+                <div class="notes-tags">
+                    <span class="tag">Lavender</span>
+                    <span class="tag">Mandarin</span>
+                    <span class="tag">Blackcurrant</span>
+                    <span class="tag">Petitgrain</span>
+                </div>
+
+                <div class="notes-category">HEART NOTES</div>
+                <div class="notes-tags">
+                    <span class="tag">Lavender</span>
+                    <span class="tag">Orange Blossom</span>
+                    <span class="tag">Jasmine</span>
+                </div>
+
+                <div class="notes-category">BASE NOTES</div>
+                <div class="notes-tags">
+                    <span class="tag">Vanilla</span>
+                    <span class="tag">Musk</span>
+                    <span class="tag">Cedar</span>
+                    <span class="tag">Ambergris</span>
+                </div>
+            </div>
+
+            <!-- زر الطلب عبر الواتساب -->
+            <a href="https://wa.me/966500000000?text=مرحباً، أرغب في طلب عطر Libre" class="add-to-cart-btn" target="_blank">
+                Add to Cart
             </a>
         </div>
     </div>
 
+    <!-- قسم المنتجات المشابهة -->
+    <div class="related-section">
+        <h2 class="related-title">You May Also Like</h2>
+        <div class="related-grid">
+            <div class="related-card">
+                <div class="related-img">
+                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=400&q=80" alt="Afnan 9AM">
+                </div>
+                <h4>Afnan 9AM</h4>
+                <p>AFNAN</p>
+            </div>
+            <div class="related-card">
+                <div class="related-img">
+                    <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=400&q=80" alt="Libre Intense">
+                </div>
+                <h4>Libre Intense</h4>
+                <p>YVES SAINT LAURENT</p>
+            </div>
+            <div class="related-card">
+                <div class="related-img">
+                    <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=400&q=80" alt="Black Opium">
+                </div>
+                <h4>Black Opium</h4>
+                <p>YVES SAINT LAURENT</p>
+            </div>
+            <div class="related-card">
+                <div class="related-img">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=400&q=80" alt="Coco Mademoiselle">
+                </div>
+                <h4>Coco Mademoiselle</h4>
+                <p>CHANEL</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
     <footer>
-        <p>جميع الحقوق محفوظة © Taha AZR Perfumes</p>
+        <div class="footer-brand">
+            <h2>VERE LUNE</h2>
+            <p>From Lebanon, by Mohmad Alashi, Designer and Arabian fragrances, curated to wear.</p>
+            <p style="margin-top: 1rem; color: #fff;">@mhmdalashli</p>
+        </div>
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Cart</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
     </footer>
 
 </body>
