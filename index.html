@@ -219,24 +219,23 @@
         }
 
         .product-img-box {
-            height: 380px;
-            background: #111;
+            height: 300px;
+            background: linear-gradient(135deg, #181818, #0f0f0f);
             position: relative;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .product-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
+        .perfume-bottle-icon {
+            font-size: 5rem;
+            filter: drop-shadow(0 10px 15px rgba(212, 175, 55, 0.2));
+            transition: transform 0.4s;
         }
 
-        .product-card:hover .product-img-box img {
-            transform: scale(1.05);
+        .product-card:hover .perfume-bottle-icon {
+            transform: scale(1.1) rotate(3deg);
         }
 
         .product-content {
@@ -344,12 +343,15 @@
             align-items: start;
         }
 
-        .detail-img {
+        .detail-img-box {
             width: 100%;
-            height: 480px;
-            object-fit: cover;
+            height: 420px;
+            background: linear-gradient(135deg, #181818, #0f0f0f);
             border-radius: 12px;
-            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
         }
 
         .detail-info h2 {
@@ -387,7 +389,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s, border-color 0.3s;
@@ -398,11 +400,8 @@
             border-color: var(--accent-gold);
         }
 
-        .rec-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
+        .rec-icon {
+            font-size: 2.5rem;
             margin-bottom: 0.8rem;
         }
 
@@ -619,48 +618,47 @@
     </footer>
 
     <script>
-        // Data containing embedded base64 versions of your uploaded images
         const perfumesData = {
             "Dunhil D2": { 
                 name: "Dunhil D2", 
                 category: "Men (رجالي)", 
-                img: "image_7.png", 
+                icon: "🥃", 
                 desc: "A powerful and sophisticated masculine fragrance combining rich woody notes with modern elegance." 
             },
             "Lexus": { 
                 name: "Lexus", 
                 category: "Women (نسائي)", 
-                img: "image_9.png", 
+                icon: "💎", 
                 desc: "An alluring feminine fragrance filled with delicate floral essences and warm amber undertones." 
             },
             "Bakarath": { 
                 name: "Bakarath", 
                 category: "Men (رجالي - برج خليفة الذهبي)", 
-                img: "image_2.png", 
+                icon: "👑", 
                 desc: "An iconic rich oriental fragrance with unmatched longevity and magnetic presence, inspired by golden luxury." 
             },
             "D Black": { 
                 name: "D Black", 
                 category: "Men (رجالي - برج خليفة الليلي)", 
-                img: "image_3.png", 
+                icon: "🌙", 
                 desc: "A bold night scent designed for the confident man who commands attention under the night skyline." 
             },
             "Berry": { 
                 name: "Berry", 
                 category: "Women (نسائي - التوت والفراولة)", 
-                img: "image_8.png", 
+                icon: "🍓", 
                 desc: "A sweet, fruity masterpiece bursting with juicy strawberry and wild berry accords." 
             },
             "Gucci MZ": { 
                 name: "Gucci MZ", 
                 category: "Men & Women (نسائي ورجالي - إضاءة المدينة)", 
-                img: "image_6.png", 
+                icon: "✨", 
                 desc: "A versatile, universal fragrance that seamlessly blends striking spicy and smooth notes suitable for both men and women." 
             },
             "Fazza": { 
                 name: "Fazza", 
                 category: "Women (عطر فزاع)", 
-                img: "image_5.png", 
+                icon: "🌹", 
                 desc: "A royal feminine scent inspired by authentic heritage and contemporary luxury." 
             }
         };
@@ -676,7 +674,7 @@
                 card.onclick = () => openProduct(key);
                 card.innerHTML = `
                     <div class="product-img-box">
-                        <img src="${p.img}" alt="${p.name}">
+                        <div class="perfume-bottle-icon">${p.icon}</div>
                     </div>
                     <div class="product-content">
                         <div class="product-category">${p.category}</div>
@@ -725,8 +723,8 @@
 
             const detailContainer = document.getElementById('detailContent');
             detailContainer.innerHTML = `
-                <div>
-                    <img src="${p.img}" alt="${p.name}" class="detail-img">
+                <div class="detail-img-box">
+                    <div style="font-size: 8rem; filter: drop-shadow(0 15px 25px rgba(212, 175, 55, 0.3));">${p.icon}</div>
                 </div>
                 <div class="detail-info">
                     <div class="product-category">${p.category}</div>
@@ -757,7 +755,7 @@
                             const rec = perfumesData[recKey];
                             return `
                                 <div class="rec-card" onclick="openProduct('${recKey}')">
-                                    <img src="${rec.img}" alt="${rec.name}" class="rec-img">
+                                    <div class="rec-icon">${rec.icon}</div>
                                     <div class="rec-title">${rec.name}</div>
                                     <div style="color: var(--accent-gold); font-size: 0.8rem; margin-top: 0.3rem;">${rec.category}</div>
                                 </div>
