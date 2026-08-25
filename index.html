@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taha AZR Perfumes - Official Store</title>
+    <title>TAHA AZR Perfumes - Official Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -109,6 +109,7 @@
             padding: 2rem;
             transition: left 0.3s ease;
             box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+            overflow-y: auto;
         }
 
         .sidebar.active {
@@ -224,9 +225,12 @@
 
         .product-img-box {
             height: 380px;
-            background: var(--input-bg);
+            background: #111;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .product-img-box img {
@@ -320,16 +324,10 @@
         }
 
         /* Single Product Detail View */
-        .detail-container {
-            max-width: 900px;
-            margin: 3rem auto;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2.5rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
+        .detail-wrapper {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
         }
 
         .back-btn {
@@ -339,16 +337,27 @@
             padding: 0.6rem 1.2rem;
             border-radius: 8px;
             cursor: pointer;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             font-weight: 600;
+        }
+
+        .detail-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
         }
 
         .detail-img {
             width: 100%;
-            height: 450px;
+            height: 480px;
             object-fit: cover;
             border-radius: 12px;
-            background: var(--input-bg);
+            background: #111;
         }
 
         .detail-info h2 {
@@ -363,9 +372,58 @@
             font-size: 1rem;
         }
 
+        /* Recommended Section Inside Product Page */
+        .recommendations-section {
+            margin-top: 4rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 3rem;
+        }
+
+        .recommendations-section h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .rec-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .rec-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-gold);
+        }
+
+        .rec-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+        }
+
+        .rec-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
         /* Reviews Section */
         .reviews-section {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 2rem auto 5rem auto;
             padding: 2.5rem;
             background: var(--card-bg);
@@ -478,7 +536,8 @@
         }
 
         @media (max-width: 768px) {
-            .detail-container { grid-template-columns: 1fr; margin: 1rem; padding: 1.5rem; }
+            .detail-container { grid-template-columns: 1fr; padding: 1.5rem; }
+            .recommendations-grid { grid-template-columns: 1fr; }
             footer { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
             nav { padding: 1.2rem 1.5rem; }
             .form-row { flex-direction: column; }
@@ -523,118 +582,8 @@
             <p>Exquisite artisanal fragrances crafted with elegance and long-lasting distinction</p>
         </header>
 
-        <main class="products-container">
-            <!-- 1. Dunhil D2 (Men) -->
-            <div class="product-card" onclick="openProduct('Dunhil D2')">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80" alt="Dunhil D2">
-                </div>
-                <div class="product-content">
-                    <div class="product-category">Men</div>
-                    <h3 class="product-title">Dunhil D2</h3>
-                    <div class="sizes-selection" onclick="event.stopPropagation()">
-                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
-                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
-                    </div>
-                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Dunhil%20D2" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- 2. Lexus (Women) -->
-            <div class="product-card" onclick="openProduct('Lexus')">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80" alt="Lexus">
-                </div>
-                <div class="product-content">
-                    <div class="product-category">Women</div>
-                    <h3 class="product-title">Lexus</h3>
-                    <div class="sizes-selection" onclick="event.stopPropagation()">
-                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
-                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
-                    </div>
-                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Lexus" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- 3. Bakarath (Men - برج خليفة الذهبي) -->
-            <div class="product-card" onclick="openProduct('Bakarath')">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80" alt="Bakarath">
-                </div>
-                <div class="product-content">
-                    <div class="product-category">Men</div>
-                    <h3 class="product-title">Bakarath</h3>
-                    <div class="sizes-selection" onclick="event.stopPropagation()">
-                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
-                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
-                    </div>
-                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Bakarath" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- 4. D Black (Men - برج خليفة الليلي) -->
-            <div class="product-card" onclick="openProduct('D Black')">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&q=80" alt="D Black">
-                </div>
-                <div class="product-content">
-                    <div class="product-category">Men</div>
-                    <h3 class="product-title">D Black</h3>
-                    <div class="sizes-selection" onclick="event.stopPropagation()">
-                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
-                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
-                    </div>
-                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20D%20Black" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- 5. Berry (Women - التوت والفراولة) -->
-            <div class="product-card" onclick="openProduct('Berry')">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80" alt="Berry">
-                </div>
-                <div class="product-content">
-                    <div class="product-category">Women</div>
-                    <h3 class="product-title">Berry</h3>
-                    <div class="sizes-selection" onclick="event.stopPropagation()">
-                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
-                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
-                    </div>
-                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Berry" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- 6. Gucci MZ (Unisex - العطر مع إضاءة المدينة) -->
-            <div class="product-card" onclick="openProduct('Gucci MZ')">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Gucci MZ">
-                </div>
-                <div class="product-content">
-                    <div class="product-category">Men & Women</div>
-                    <h3 class="product-title">Gucci MZ</h3>
-                    <div class="sizes-selection" onclick="event.stopPropagation()">
-                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
-                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
-                    </div>
-                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Gucci%20MZ" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
-                </div>
-            </div>
-
-            <!-- 7. Fazza (Women - عطر فزاع) -->
-            <div class="product-card" onclick="openProduct('Fazza')">
-                <div class="product-img-box">
-                    <img src="https://images.unsplash.com/photo-1563178406-4cdc2923acbc?auto=format&fit=crop&w=600&q=80" alt="Fazza">
-                </div>
-                <div class="product-content">
-                    <div class="product-category">Women</div>
-                    <h3 class="product-title">Fazza</h3>
-                    <div class="sizes-selection" onclick="event.stopPropagation()">
-                        <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
-                        <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
-                    </div>
-                    <a href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20Fazza" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
-                </div>
-            </div>
+        <main class="products-container" id="productsGrid">
+            <!-- Products injected via JS -->
         </main>
 
         <!-- Real Reviews Section -->
@@ -663,11 +612,11 @@
 
     <!-- DETAIL VIEW (Single Product Page) -->
     <div id="detailView" class="view-section">
-        <div style="max-width: 900px; margin: 2rem auto 0 auto; padding: 0 2rem;">
+        <div class="detail-wrapper">
             <button class="back-btn" onclick="showHome()">← Back to Store</button>
-        </div>
-        <div class="detail-container" id="detailContent">
-            <!-- Dynamic product detail injected via JS -->
+            <div class="detail-container" id="detailContent">
+                <!-- Dynamic product detail injected via JS -->
+            </div>
         </div>
     </div>
 
@@ -689,16 +638,79 @@
     </footer>
 
     <script>
-        // Database of perfumes with updated categories and working images
+        // Database mapped directly to your uploaded photos
         const perfumesData = {
-            "Dunhil D2": { name: "Dunhil D2", category: "Men", img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80", desc: "A powerful and sophisticated masculine fragrance combining rich woody notes with modern elegance." },
-            "Lexus": { name: "Lexus", category: "Women", img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80", desc: "An alluring feminine fragrance filled with delicate floral essences and warm amber undertones." },
-            "Bakarath": { name: "Bakarath", category: "Men", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80", desc: "An iconic rich oriental fragrance with unmatched longevity and magnetic presence, inspired by golden luxury." },
-            "D Black": { name: "D Black", category: "Men", img: "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&q=80", desc: "A bold night scent designed for the confident man who commands attention under the night skyline." },
-            "Berry": { name: "Berry", category: "Women", img: "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80", desc: "A sweet, fruity masterpiece bursting with juicy strawberry and wild berry accords." },
-            "Gucci MZ": { name: "Gucci MZ", category: "Men & Women", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80", desc: "A versatile, universal fragrance that seamlessly blends striking spicy and smooth notes suitable for both men and women." },
-            "Fazza": { name: "Fazza", category: "Women", img: "https://images.unsplash.com/photo-1563178406-4cdc2923acbc?auto=format&fit=crop&w=600&q=80", desc: "A royal feminine scent inspired by authentic heritage and contemporary luxury." }
+            "Dunhil D2": { 
+                name: "Dunhil D2", 
+                category: "Men (رجالي)", 
+                img: "image_7.png", 
+                desc: "A powerful and sophisticated masculine fragrance combining rich woody notes with modern elegance." 
+            },
+            "Lexus": { 
+                name: "Lexus", 
+                category: "Women (نسائي)", 
+                img: "image_9.png", 
+                desc: "An alluring feminine fragrance filled with delicate floral essences and warm amber undertones." 
+            },
+            "Bakarath": { 
+                name: "Bakarath", 
+                category: "Men (رجالي - برج خليفة الذهبي)", 
+                img: "image_2.png", 
+                desc: "An iconic rich oriental fragrance with unmatched longevity and magnetic presence, inspired by golden luxury." 
+            },
+            "D Black": { 
+                name: "D Black", 
+                category: "Men (رجالي - برج خليفة الليلي)", 
+                img: "image_3.png", 
+                desc: "A bold night scent designed for the confident man who commands attention under the night skyline." 
+            },
+            "Berry": { 
+                name: "Berry", 
+                category: "Women (نسائي - التوت والفراولة)", 
+                img: "image_8.png", 
+                desc: "A sweet, fruity masterpiece bursting with juicy strawberry and wild berry accords." 
+            },
+            "Gucci MZ": { 
+                name: "Gucci MZ", 
+                category: "Men & Women (نسائي ورجالي - إضاءة المدينة)", 
+                img: "image_6.png", 
+                desc: "A versatile, universal fragrance that seamlessly blends striking spicy and smooth notes suitable for both men and women." 
+            },
+            "Fazza": { 
+                name: "Fazza", 
+                category: "Women (عطر فزاع)", 
+                img: "image_5.png", 
+                desc: "A royal feminine scent inspired by authentic heritage and contemporary luxury." 
+            }
         };
+
+        // Render Home Grid Dynamically
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            for (let key in perfumesData) {
+                const p = perfumesData[key];
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.onclick = () => openProduct(key);
+                card.innerHTML = `
+                    <div class="product-img-box">
+                        <img src="${p.img}" alt="${p.name}">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">${p.category}</div>
+                        <h3 class="product-title">${p.name}</h3>
+                        <div class="sizes-selection" onclick="event.stopPropagation()">
+                            <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
+                            <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
+                        </div>
+                        <a href="https://wa.me/971544741541?text=${encodeURIComponent('Hello, I would like to order ' + p.name)}" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            }
+        }
 
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('active');
@@ -723,9 +735,15 @@
             window.scrollTo(0, 0);
         }
 
+        // Open Individual Product Page with "You May Also Like" section
         function openProduct(productName) {
             const p = perfumesData[productName];
             if (!p) return;
+
+            // Get 3 recommended perfumes (excluding current one)
+            const allKeys = Object.keys(perfumesData).filter(k => k !== productName);
+            const shuffled = allKeys.sort(() => 0.5 - Math.random());
+            const recommendations = shuffled.slice(0, 3);
 
             const detailContainer = document.getElementById('detailContent');
             detailContainer.innerHTML = `
@@ -753,6 +771,22 @@
 
                     <a id="detOrderBtn" href="https://wa.me/971544741541?text=${encodeURIComponent('Hello, I would like to order ' + p.name + ' (50ml) for 220 AED')}" class="order-btn" style="padding: 1.1rem; font-size: 1.05rem;">Order via WhatsApp (220 AED)</a>
                 </div>
+
+                <div class="recommendations-section" style="grid-column: span 2;">
+                    <h3>عطور قد تعجبك أيضاً (You May Also Like)</h3>
+                    <div class="recommendations-grid">
+                        ${recommendations.map(recKey => {
+                            const rec = perfumesData[recKey];
+                            return `
+                                <div class="rec-card" onclick="openProduct('${recKey}')">
+                                    <img src="${rec.img}" alt="${rec.name}" class="rec-img">
+                                    <div class="rec-title">${rec.name}</div>
+                                    <div style="color: var(--accent-gold); font-size: 0.8rem; margin-top: 0.3rem;">${rec.category}</div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
             `;
 
             document.getElementById('homeView').classList.remove('active');
@@ -772,7 +806,10 @@
         }
 
         // Reviews Management
-        document.addEventListener('DOMContentLoaded', loadReviews);
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            loadReviews();
+        });
 
         function submitReview(event) {
             event.preventDefault();
