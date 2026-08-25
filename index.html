@@ -44,7 +44,6 @@
             line-height: 1.6;
         }
 
-        /* Navigation Bar */
         nav {
             display: flex;
             justify-content: space-between;
@@ -96,7 +95,6 @@
             color: var(--accent-gold);
         }
 
-        /* Sidebar Menu */
         .sidebar {
             position: fixed;
             top: 0;
@@ -169,7 +167,6 @@
             display: block;
         }
 
-        /* Hero Header */
         .hero-header {
             text-align: center;
             padding: 4rem 2rem 2rem 2rem;
@@ -187,7 +184,6 @@
             font-size: 1.1rem;
         }
 
-        /* Views Container */
         .view-section {
             display: none;
         }
@@ -196,7 +192,6 @@
             display: block;
         }
 
-        /* Products Grid */
         .products-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -267,7 +262,6 @@
             font-weight: 600;
         }
 
-        /* Sizes & Prices */
         .sizes-selection {
             display: flex;
             gap: 0.8rem;
@@ -302,7 +296,6 @@
             font-weight: 600;
         }
 
-        /* Order Button */
         .order-btn {
             margin-top: auto;
             width: 100%;
@@ -323,7 +316,6 @@
             opacity: 0.9;
         }
 
-        /* Single Product Detail View */
         .detail-wrapper {
             max-width: 1000px;
             margin: 2rem auto;
@@ -372,7 +364,6 @@
             font-size: 1rem;
         }
 
-        /* Recommended Section Inside Product Page */
         .recommendations-section {
             margin-top: 4rem;
             border-top: 1px solid var(--border-color);
@@ -421,7 +412,6 @@
             font-weight: 600;
         }
 
-        /* Reviews Section */
         .reviews-section {
             max-width: 1200px;
             margin: 2rem auto 5rem auto;
@@ -523,7 +513,6 @@
             border-radius: 12px;
         }
 
-        /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
             padding: 4rem 3rem;
@@ -546,7 +535,6 @@
 </head>
 <body data-theme="dark">
 
-    <!-- Navigation Bar -->
     <nav>
         <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
         <a href="#" class="logo" onclick="showHome()">TAHA AZR</a>
@@ -555,7 +543,6 @@
         </div>
     </nav>
 
-    <!-- Sidebar Menu -->
     <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -575,7 +562,6 @@
         </ul>
     </div>
 
-    <!-- HOME VIEW (Products Grid) -->
     <div id="homeView" class="view-section active">
         <header class="hero-header">
             <h1>Taha AZR Luxury Perfumes</h1>
@@ -583,10 +569,8 @@
         </header>
 
         <main class="products-container" id="productsGrid">
-            <!-- Products injected via JS -->
         </main>
 
-        <!-- Real Reviews Section -->
         <section class="reviews-section" id="reviews">
             <h2>Customer Reviews & Ratings</h2>
             <form class="review-form" id="reviewForm" onsubmit="submitReview(event)">
@@ -610,17 +594,14 @@
         </section>
     </div>
 
-    <!-- DETAIL VIEW (Single Product Page) -->
     <div id="detailView" class="view-section">
         <div class="detail-wrapper">
             <button class="back-btn" onclick="showHome()">← Back to Store</button>
             <div class="detail-container" id="detailContent">
-                <!-- Dynamic product detail injected via JS -->
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-brand">
             <h2>TAHA AZR PERFUMES</h2>
@@ -638,7 +619,7 @@
     </footer>
 
     <script>
-        // Database mapped directly to your uploaded photos
+        // Data containing embedded base64 versions of your uploaded images
         const perfumesData = {
             "Dunhil D2": { 
                 name: "Dunhil D2", 
@@ -684,7 +665,6 @@
             }
         };
 
-        // Render Home Grid Dynamically
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
@@ -735,12 +715,10 @@
             window.scrollTo(0, 0);
         }
 
-        // Open Individual Product Page with "You May Also Like" section
         function openProduct(productName) {
             const p = perfumesData[productName];
             if (!p) return;
 
-            // Get 3 recommended perfumes (excluding current one)
             const allKeys = Object.keys(perfumesData).filter(k => k !== productName);
             const shuffled = allKeys.sort(() => 0.5 - Math.random());
             const recommendations = shuffled.slice(0, 3);
@@ -805,7 +783,6 @@
             orderBtn.textContent = `Order via WhatsApp (${price})`;
         }
 
-        // Reviews Management
         document.addEventListener('DOMContentLoaded', () => {
             renderProducts();
             loadReviews();
