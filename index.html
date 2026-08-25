@@ -219,23 +219,24 @@
         }
 
         .product-img-box {
-            height: 300px;
-            background: linear-gradient(135deg, #181818, #0f0f0f);
+            height: 380px;
+            background: #111;
             position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid var(--border-color);
         }
 
-        .perfume-bottle-icon {
-            font-size: 5rem;
-            filter: drop-shadow(0 10px 15px rgba(212, 175, 55, 0.2));
-            transition: transform 0.4s;
+        .product-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
         }
 
-        .product-card:hover .perfume-bottle-icon {
-            transform: scale(1.1) rotate(3deg);
+        .product-card:hover .product-img-box img {
+            transform: scale(1.05);
         }
 
         .product-content {
@@ -343,15 +344,12 @@
             align-items: start;
         }
 
-        .detail-img-box {
+        .detail-img {
             width: 100%;
-            height: 420px;
-            background: linear-gradient(135deg, #181818, #0f0f0f);
+            height: 480px;
+            object-fit: cover;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border-color);
+            background: #111;
         }
 
         .detail-info h2 {
@@ -389,7 +387,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 1.2rem;
+            padding: 1rem;
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s, border-color 0.3s;
@@ -400,8 +398,11 @@
             border-color: var(--accent-gold);
         }
 
-        .rec-icon {
-            font-size: 2.5rem;
+        .rec-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
             margin-bottom: 0.8rem;
         }
 
@@ -622,43 +623,43 @@
             "Dunhil D2": { 
                 name: "Dunhil D2", 
                 category: "Men (رجالي)", 
-                icon: "🥃", 
+                img: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=600&auto=format&fit=crop", 
                 desc: "A powerful and sophisticated masculine fragrance combining rich woody notes with modern elegance." 
             },
             "Lexus": { 
                 name: "Lexus", 
                 category: "Women (نسائي)", 
-                icon: "💎", 
+                img: "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=600&auto=format&fit=crop", 
                 desc: "An alluring feminine fragrance filled with delicate floral essences and warm amber undertones." 
             },
             "Bakarath": { 
                 name: "Bakarath", 
                 category: "Men (رجالي - برج خليفة الذهبي)", 
-                icon: "👑", 
+                img: "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=600&auto=format&fit=crop", 
                 desc: "An iconic rich oriental fragrance with unmatched longevity and magnetic presence, inspired by golden luxury." 
             },
             "D Black": { 
                 name: "D Black", 
                 category: "Men (رجالي - برج خليفة الليلي)", 
-                icon: "🌙", 
+                img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop", 
                 desc: "A bold night scent designed for the confident man who commands attention under the night skyline." 
             },
             "Berry": { 
                 name: "Berry", 
                 category: "Women (نسائي - التوت والفراولة)", 
-                icon: "🍓", 
+                img: "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?q=80&w=600&auto=format&fit=crop", 
                 desc: "A sweet, fruity masterpiece bursting with juicy strawberry and wild berry accords." 
             },
             "Gucci MZ": { 
                 name: "Gucci MZ", 
                 category: "Men & Women (نسائي ورجالي - إضاءة المدينة)", 
-                icon: "✨", 
+                img: "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=600&auto=format&fit=crop", 
                 desc: "A versatile, universal fragrance that seamlessly blends striking spicy and smooth notes suitable for both men and women." 
             },
             "Fazza": { 
                 name: "Fazza", 
                 category: "Women (عطر فزاع)", 
-                icon: "🌹", 
+                img: "https://images.unsplash.com/photo-1563178403-dc7e4879051a?q=80&w=600&auto=format&fit=crop", 
                 desc: "A royal feminine scent inspired by authentic heritage and contemporary luxury." 
             }
         };
@@ -674,7 +675,7 @@
                 card.onclick = () => openProduct(key);
                 card.innerHTML = `
                     <div class="product-img-box">
-                        <div class="perfume-bottle-icon">${p.icon}</div>
+                        <img src="${p.img}" alt="${p.name}">
                     </div>
                     <div class="product-content">
                         <div class="product-category">${p.category}</div>
@@ -723,8 +724,8 @@
 
             const detailContainer = document.getElementById('detailContent');
             detailContainer.innerHTML = `
-                <div class="detail-img-box">
-                    <div style="font-size: 8rem; filter: drop-shadow(0 15px 25px rgba(212, 175, 55, 0.3));">${p.icon}</div>
+                <div>
+                    <img src="${p.img}" alt="${p.name}" class="detail-img">
                 </div>
                 <div class="detail-info">
                     <div class="product-category">${p.category}</div>
@@ -755,7 +756,7 @@
                             const rec = perfumesData[recKey];
                             return `
                                 <div class="rec-card" onclick="openProduct('${recKey}')">
-                                    <div class="rec-icon">${rec.icon}</div>
+                                    <img src="${rec.img}" alt="${rec.name}" class="rec-img">
                                     <div class="rec-title">${rec.name}</div>
                                     <div style="color: var(--accent-gold); font-size: 0.8rem; margin-top: 0.3rem;">${rec.category}</div>
                                 </div>
