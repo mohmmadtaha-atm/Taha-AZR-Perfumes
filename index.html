@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taha AZR Perfumes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0b0b;
-            --card-bg: #141414;
-            --gold: #d4af37;
-            --gold-light: #f3e5ab;
-            --text-main: #ffffff;
-            --text-muted: #999999;
-            --border: #222222;
+            --bg-color: #0c0c0c;
+            --container-bg: #141414;
+            --gold: #c5a059;
+            --gold-light: #e6c584;
+            --text-main: #f9f9f9;
+            --text-muted: #888888;
+            --border: #262626;
         }
 
         * {
@@ -31,181 +31,154 @@
             flex-direction: column;
         }
 
+        /* شريط العنوان العلوي للبراند */
         header {
-            text-align: center;
-            padding: 3rem 1rem 2rem;
+            padding: 1.5rem 2rem;
             border-bottom: 1px solid var(--border);
-            background: linear-gradient(to bottom, #111, var(--bg-color));
+            text-align: center;
+            background: var(--bg-color);
         }
 
-        header h1 {
+        header h2 {
             font-family: 'Amiri', serif;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             color: var(--gold);
             letter-spacing: 3px;
-            margin-bottom: 0.5rem;
+            text-transform: uppercase;
         }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-            flex: 1;
-            width: 100%;
-        }
-
-        .grid-perfumes {
+        /* حاوية المنتج الرئيسية */
+        .product-container {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            flex: 1;
         }
 
-        .perfume-card {
-            background: var(--card-bg);
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin: 1.5rem auto;
+            }
+        }
+
+        /* قسم الصورة (شبيه بـ Verelune) */
+        .product-image-wrapper {
+            background: var(--container-bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            height: 550px;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .perfume-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold);
-        }
-
-        .perfume-img-box {
-            width: 100%;
-            height: 350px;
-            background: #1a1a1a;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .perfume-img-box img {
+        .product-image-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
         }
 
-        .perfume-card:hover .perfume-img-box img {
-            transform: scale(1.05);
-        }
-
-        .perfume-info {
-            padding: 1.5rem;
-            text-align: center;
+        /* قسم التفاصيل */
+        .product-details {
             display: flex;
             flex-direction: column;
-            flex: 1;
-            justify-content: space-between;
+            justify-content: center;
         }
 
-        .perfume-info h3 {
+        .product-title {
             font-family: 'Amiri', serif;
-            font-size: 1.5rem;
-            color: var(--gold-light);
-            margin-bottom: 0.8rem;
+            font-size: 2.8rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
-        .perfume-info p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .order-btn {
-            display: inline-block;
-            background: transparent;
+        .product-subtitle {
             color: var(--gold);
-            border: 1px solid var(--gold);
-            padding: 0.7rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
         }
 
-        .order-btn:hover {
-            background: var(--gold);
+        .product-description {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            border-right: 2px solid var(--gold);
+            padding-right: 1rem;
+        }
+
+        /* زر الطلب الفاخر */
+        .action-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--gold);
             color: #000;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
+        .action-btn:hover {
+            background-color: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        /* الفوتر */
         footer {
             text-align: center;
             padding: 2rem;
             border-top: 1px solid var(--border);
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
+    <!-- اسم البراند بالأعلى -->
     <header>
-        <h1>Taha AZR Perfumes</h1>
-        <p>عطور فاخرة تعكس هويتك</p>
+        <h2>Taha AZR Perfumes</h2>
     </header>
 
-    <div class="container">
-        <div class="grid-perfumes">
+    <!-- تفاصيل العطر الفردي -->
+    <div class="product-container">
+        <!-- صورة العطر البارزة -->
+        <div class="product-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1000&q=80" alt="اسم العطر">
+        </div>
+
+        <!-- تفاصيل ومعلومات العطر -->
+        <div class="product-details">
+            <h1 class="product-title">اسم العطر الخاص بك</h1>
+            <div class="product-subtitle">إصدار فاخر حصري</div>
             
-            <!-- العطر الأول (انسخ هذا المربع وكرره لكل عطر عندك) -->
-            <div class="perfume-card">
-                <div class="perfume-img-box">
-                    <!-- ضع هنا رابط صورة العطر أو اسم ملف الصورة المرفوعة -->
-                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80" alt="اسم العطر الأول">
-                </div>
-                <div class="perfume-info">
-                    <div>
-                        <h3>اسم العطر الأول</h3>
-                        <p>وصف مختصر أو مكونات العطر المميزة التي تجذب الزبون.</p>
-                    </div>
-                    <a href="https://wa.me/966500000000?text=مرحباً، أرغب في الاستفسار أو طلب العطر الأول" class="order-btn" target="_blank">اطلب الآن</a>
-                </div>
-            </div>
+            <p class="product-description">
+                عطر استثنائي صُمم خصيصاً ليعكس الحضور الطاغي والفخامة المطلقة. مزيج ساحر يترك انطباعاً لا يُنسى ويدوم طويلاً طوال اليوم.
+            </p>
 
-            <!-- العطر الثاني -->
-            <div class="perfume-card">
-                <div class="perfume-img-box">
-                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="اسم العطر الثاني">
-                </div>
-                <div class="perfume-info">
-                    <div>
-                        <h3>اسم العطر الثاني</h3>
-                        <p>وصف مختصر أو مكونات العطر المميزة.</p>
-                    </div>
-                    <a href="https://wa.me/966500000000?text=مرحباً، أرغب في الاستفسار أو طلب العطر الثاني" class="order-btn" target="_blank">اطلب الآن</a>
-                </div>
-            </div>
-
-            <!-- العطر الثالث -->
-            <div class="perfume-card">
-                <div class="perfume-img-box">
-                    <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=600&q=80" alt="اسم العطر الثالث">
-                </div>
-                <div class="perfume-info">
-                    <div>
-                        <h3>اسم العطر الثالث</h3>
-                        <p>وصف مختصر أو مكونات العطر المميزة.</p>
-                    </div>
-                    <a href="https://wa.me/966500000000?text=مرحباً، أرغب في الاستفسار أو طلب العطر الثالث" class="order-btn" target="_blank">اطلب الآن</a>
-                </div>
-            </div>
-
+            <!-- زر الطلب المباشر -->
+            <a href="https://wa.me/966500000000?text=مرحباً، أرغب في طلب عطر (اسم العطر)" class="action-btn" target="_blank">
+                اطلب العطر الآن
+            </a>
         </div>
     </div>
 
     <footer>
-        <p>جميع الحقوق محفوظة © Taha AZR Perfumes 2026</p>
+        <p>جميع الحقوق محفوظة © Taha AZR Perfumes</p>
     </footer>
 
 </body>
