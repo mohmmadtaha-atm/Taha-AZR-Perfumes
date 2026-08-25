@@ -155,7 +155,7 @@
             margin-bottom: 2rem;
         }
 
-        /* الأحجام */
+        /* الأحجام والأسعار */
         .section-title {
             font-size: 0.9rem;
             letter-spacing: 1px;
@@ -177,16 +177,23 @@
             cursor: pointer;
             text-align: center;
             transition: border-color 0.3s;
+            min-width: 120px;
         }
 
         .size-option.active {
             border-color: var(--text-main);
         }
 
+        .size-option strong {
+            display: block;
+            font-size: 1rem;
+        }
+
         .size-option span {
             display: block;
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--accent-gold);
+            margin-top: 0.2rem;
         }
 
         /* الهرم العطري */
@@ -238,7 +245,7 @@
             background: #ffffff;
         }
 
-        /* قسم آراء العملاء (Reviews) المضاف حديثاً */
+        /* قسم آراء العملاء */
         .reviews-section {
             max-width: 1200px;
             margin: 0 auto;
@@ -321,7 +328,6 @@
             font-size: 0.95rem;
         }
 
-        /* نموذج كتابة التقييم */
         .review-form-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -382,7 +388,7 @@
             background: #ffffff;
         }
 
-        /* قسم المنتجات المشابهة */
+        /* المنتجات المشابهة */
         .related-section {
             max-width: 1200px;
             margin: 0 auto;
@@ -460,6 +466,12 @@
             margin-bottom: 1rem;
         }
 
+        .footer-brand a {
+            color: var(--text-main);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-gold);
+        }
+
         .footer-links ul {
             list-style: none;
         }
@@ -491,7 +503,7 @@
             <li><a href="#">SHOP</a></li>
             <li><a href="#">ABOUT</a></li>
         </ul>
-        <div class="logo">VERE LUNE</div>
+        <div class="logo">Taha AZR</div>
         <div class="nav-icons">
             <span>☀️</span>
             <span>🛒</span>
@@ -512,16 +524,18 @@
 
         <div class="product-info">
             <h1>Libre</h1>
-            <div class="product-brand">YVES SAINT LAURENT</div>
+            <div class="product-brand">Taha AZR Perfumes</div>
             <p class="product-desc">Lavender and orange blossom over warm vanilla. Bold, free, and instantly recognizable.</p>
 
-            <div class="section-title">Size</div>
+            <div class="section-title">Size & Price</div>
             <div class="sizes-box">
                 <div class="size-option active">
                     <strong>50ml</strong>
+                    <span>220 AED / $60</span>
                 </div>
                 <div class="size-option">
                     <strong>100ml</strong>
+                    <span>380 AED / $103</span>
                 </div>
             </div>
 
@@ -551,13 +565,14 @@
                 </div>
             </div>
 
-            <a href="https://wa.me/966500000000?text=مرحباً، أرغب في طلب عطر Libre" class="add-to-cart-btn" target="_blank">
+            <!-- زر الطلب المباشر عبر الواتساب -->
+            <a href="https://wa.me/971544741541?text=مرحباً، أرغب في طلب عطر Libre بحجم 50ml (220 درهم / 60 دولار)" class="add-to-cart-btn" target="_blank">
                 Add to Cart
             </a>
         </div>
     </main>
 
-    <!-- قسم آراء العملاء (Reviews) -->
+    <!-- قسم آراء العملاء -->
     <section class="reviews-section">
         <div class="reviews-header">
             <div class="reviews-title-area">
@@ -570,7 +585,6 @@
         </div>
 
         <div class="reviews-grid">
-            <!-- قائمة التعليقات السابقة -->
             <div class="review-cards-list">
                 <div class="review-card">
                     <div class="review-card-top">
@@ -589,7 +603,6 @@
                 </div>
             </div>
 
-            <!-- نموذج كتابة تقييم جديد -->
             <div class="review-form-box">
                 <h3>Write a review</h3>
                 <form>
@@ -611,7 +624,7 @@
         </div>
     </section>
 
-    <!-- قسم المنتجات المشابهة -->
+    <!-- المنتجات المشابهة -->
     <div class="related-section">
         <h2 class="related-title">You May Also Like</h2>
         <div class="related-grid">
@@ -627,21 +640,21 @@
                     <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=400&q=80" alt="Libre Intense">
                 </div>
                 <h4>Libre Intense</h4>
-                <p>YVES SAINT LAURENT</p>
+                <p>Taha AZR</p>
             </div>
             <div class="related-card">
                 <div class="related-img">
                     <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=400&q=80" alt="Black Opium">
                 </div>
                 <h4>Black Opium</h4>
-                <p>YVES SAINT LAURENT</p>
+                <p>Taha AZR</p>
             </div>
             <div class="related-card">
                 <div class="related-img">
                     <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=400&q=80" alt="Coco Mademoiselle">
                 </div>
                 <h4>Coco Mademoiselle</h4>
-                <p>CHANEL</p>
+                <p>Taha AZR</p>
             </div>
         </div>
     </div>
@@ -649,9 +662,9 @@
     <!-- الفوتر -->
     <footer>
         <div class="footer-brand">
-            <h2>VERE LUNE</h2>
-            <p>From Lebanon, by Mohmad Alashi, Designer and Arabian fragrances, curated to wear.</p>
-            <p style="margin-top: 1rem; color: #fff;">@mhmdalashli</p>
+            <h2>Taha AZR Perfumes</h2>
+            <p>Curated Arabian and luxury fragrances.</p>
+            <p style="margin-top: 1rem;"><a href="https://www.instagram.com/mohmmadtaha_313" target="_blank">@mohmmadtaha_313</a></p>
         </div>
         <div class="footer-links">
             <h3>Quick Links</h3>
