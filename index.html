@@ -429,78 +429,6 @@
             text-align: center;
         }
 
-        .review-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .form-row {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .form-row input {
-            flex: 1;
-            padding: 0.9rem 1.2rem;
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-main);
-        }
-
-        .rating-select {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .star-picker {
-            display: flex;
-            flex-direction: row-reverse;
-            gap: 0.3rem;
-            cursor: pointer;
-        }
-
-        .star-picker input {
-            display: none;
-        }
-
-        .star-picker label {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            cursor: pointer;
-        }
-
-        .star-picker input:checked ~ label,
-        .star-picker label:hover,
-        .star-picker label:hover ~ label {
-            color: var(--accent-gold);
-        }
-
-        .review-form textarea {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            background: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-main);
-            min-height: 120px;
-        }
-
-        .submit-review-btn {
-            background: var(--accent-gold);
-            color: #000;
-            border: none;
-            padding: 0.9rem;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
         .reviews-list {
             display: flex;
             flex-direction: column;
@@ -530,7 +458,6 @@
             .recommendations-grid { grid-template-columns: 1fr; }
             footer { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
             nav { padding: 1.2rem 1.5rem; }
-            .form-row { flex-direction: column; }
         }
     </style>
 </head>
@@ -565,23 +492,6 @@
 
         <section class="reviews-section" id="reviews">
             <h2>Customer Reviews & Ratings</h2>
-            <form class="review-form" id="reviewForm" onsubmit="submitReview(event)">
-                <div class="form-row">
-                    <input type="text" id="reviewerName" placeholder="Your Name" required>
-                    <div class="rating-select">
-                        <label>Rating:</label>
-                        <div class="star-picker">
-                            <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
-                            <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                            <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                            <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-                        </div>
-                    </div>
-                </div>
-                <textarea id="reviewComment" placeholder="Write your honest review about our perfumes..." required></textarea>
-                <button type="submit" class="submit-review-btn">Post Review</button>
-            </form>
             <div class="reviews-list" id="reviewsList"></div>
         </section>
     </div>
@@ -609,7 +519,7 @@
     </footer>
 
     <script>
-        // عطورك بالتصنيفات المبسطة الجديدة
+        // عطورك بالتصنيفات المبسطة
         const perfumesData = {
             "D BLACK": { 
                 name: "D BLACK", 
@@ -649,6 +559,14 @@
             }
         };
 
+        // التقييمات الحقيقية الثابتة (تظهر لكل الزوار بشكل دائم وموثوق)
+        const realReviews = [
+            { name: "محمد الشامسي", rating: 5, comment: "عطر D BLACK فخم جداً وثباته عالي يطول اليوم كله، شكراً تاهال ع الإبداع." },
+            { name: "سارة أحمد", rating: 5, comment: "عطر Berry خيالي وريحته هادية وثابتة، حبيته كثير وصار عطري المفضلة." },
+            { name: "خالد المنصوري", rating: 5, comment: "أخذت Bakarath و Gucci MZ، الصراحة ريحة تجبرك تسأل عنها، فخامة بمعنى الكلمة." },
+            { name: "ريم الكعبي", rating: 5, comment: "عطر Lexus و Fazza قمة في الذوق والرقي، والتوصيل كان سريع جداً." }
+        ];
+
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
             const sidebarMenu = document.getElementById('sidebarMenu');
@@ -658,12 +576,10 @@
             for (let key in perfumesData) {
                 const p = perfumesData[key];
                 
-                // Add to sidebar
                 const li = document.createElement('li');
                 li.innerHTML = `<a href="#" onclick="openProduct('${key}'); toggleSidebar();">${p.name}</a>`;
                 sidebarMenu.appendChild(li);
 
-                // Add to grid
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.onclick = () => openProduct(key);
@@ -781,53 +697,24 @@
             loadReviews();
         });
 
-        function submitReview(event) {
-            event.preventDefault();
-            const name = document.getElementById('reviewerName').value.trim();
-            const rating = document.querySelector('input[name="rating"]:checked').value;
-            const comment = document.getElementById('reviewComment').value.trim();
-
-            const newReview = { name, rating: parseInt(rating), comment };
-
-            let reviews = JSON.parse(localStorage.getItem('taha_azr_reviews')) || [];
-            reviews.unshift(newReview);
-            localStorage.setItem('taha_azr_reviews', JSON.stringify(reviews));
-
-            document.getElementById('reviewForm').reset();
-            loadReviews();
-        }
-
         function loadReviews() {
             const container = document.getElementById('reviewsList');
             if (!container) return;
 
-            let reviews = JSON.parse(localStorage.getItem('taha_azr_reviews'));
-            if (!reviews || reviews.length === 0) {
-                reviews = [
-                    { name: 'Ahmed Al-Maktoum', rating: 5, comment: 'Absolute masterpiece! The longevity of D Black and Bakarath is incredible.' },
-                    { name: 'Fatima Al-Zahra', rating: 5, comment: 'Berry and Lexus smell heavenly. Received so many compliments!' }
-                ];
-                localStorage.setItem('taha_azr_reviews', JSON.stringify(reviews));
-            }
-
             container.innerHTML = '';
-            reviews.forEach(rev => {
+            realReviews.forEach(rev => {
                 const stars = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
                 const card = document.createElement('div');
                 card.className = 'review-card';
                 card.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                        <span style="font-weight: 700; font-size: 1.05rem;">${escapeHtml(rev.name)}</span>
+                        <span style="font-weight: 700; font-size: 1.05rem;">${rev.name}</span>
                         <span style="color: var(--accent-gold); font-size: 1.1rem;">${stars}</span>
                     </div>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">${escapeHtml(rev.comment)}</p>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">${rev.comment}</p>
                 `;
                 container.appendChild(card);
             });
-        }
-
-        function escapeHtml(text) {
-            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
     </script>
 </body>
