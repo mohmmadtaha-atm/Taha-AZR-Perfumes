@@ -3,31 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAHA AZR Perfumes - Official Luxury Store</title>
+    <title>TAHA AZR Perfumes - Libre Collection</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0b0b;
+            --bg-color: #0c0c0c;
             --card-bg: #141414;
-            --border-color: #222222;
+            --border-color: #262626;
             --text-main: #ffffff;
             --text-muted: #999999;
             --accent-gold: #d4af37;
-            --btn-bg: #e5e5e5;
+            --btn-bg: #ffffff;
             --btn-text: #000000;
-            --input-bg: #1a1a1a;
         }
 
         [data-theme="light"] {
-            --bg-color: #f8f9fa;
+            --bg-color: #f9f9f9;
             --card-bg: #ffffff;
-            --border-color: #e2e8f0;
-            --text-main: #1a202c;
-            --text-muted: #718096;
+            --border-color: #e5e5e5;
+            --text-main: #111111;
+            --text-muted: #666666;
             --accent-gold: #b7791f;
-            --btn-bg: #1a202c;
+            --btn-bg: #111111;
             --btn-text: #ffffff;
-            --input-bg: #edf2f7;
         }
 
         * {
@@ -75,11 +73,11 @@
 
         .nav-controls {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: center;
         }
 
-        .theme-toggle-btn {
+        .instagram-top-btn, .theme-toggle-btn {
             background: none;
             border: 1px solid var(--border-color);
             color: var(--text-main);
@@ -88,9 +86,13 @@
             cursor: pointer;
             font-size: 0.85rem;
             font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
-        .theme-toggle-btn:hover {
+        .instagram-top-btn:hover, .theme-toggle-btn:hover {
             border-color: var(--accent-gold);
             color: var(--accent-gold);
         }
@@ -167,279 +169,200 @@
             display: block;
         }
 
-        .hero-header {
-            text-align: center;
-            padding: 4rem 2rem 2rem 2rem;
+        /* YSL Style Product Showcase Layout */
+        .product-showcase {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .hero-header h1 {
+        .product-gallery {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details-pane h2 {
             font-family: 'Cinzel', serif;
             font-size: 2.8rem;
-            margin-bottom: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .product-subtitle {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
             letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
         }
 
-        .hero-header p {
+        .product-description {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
         }
 
-        .view-section {
-            display: none;
+        .notes-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-align: center;
         }
 
-        .view-section.active {
+        .note-item span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .note-item strong {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .size-selection-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
             display: block;
         }
 
-        .products-container {
+        .sizes-grid {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .size-option {
+            flex: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .size-option.active {
+            border-color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .size-option strong {
+            display: block;
+            font-size: 1rem;
+        }
+
+        .size-option span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-top: 0.3rem;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            text-align: center;
+            padding: 1.1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+        }
+
+        .cta-button:hover {
+            opacity: 0.85;
+        }
+
+        /* Home Products Grid */
+        .catalog-container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 2rem 4rem 2rem;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .catalog-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+        }
+
+        .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2.5rem;
         }
 
-        .product-card {
+        .card-item {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             transition: transform 0.3s, border-color 0.3s;
         }
 
-        .product-card:hover {
-            transform: translateY(-6px);
+        .card-item:hover {
+            transform: translateY(-5px);
             border-color: var(--accent-gold);
         }
 
-        .product-img-box {
-            height: 380px;
+        .card-img {
+            height: 350px;
             background: #111;
             position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .product-img-box img {
+        .card-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
         }
 
-        .product-card:hover .product-img-box img {
-            transform: scale(1.05);
-        }
-
-        .product-content {
+        .card-body {
             padding: 1.8rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
         }
 
-        .product-title {
+        .card-body h3 {
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            margin-bottom: 0.3rem;
-            font-weight: 600;
-        }
-
-        .product-category {
-            color: var(--accent-gold);
-            font-size: 0.8rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 1.2rem;
-            font-weight: 600;
-        }
-
-        .sizes-selection {
-            display: flex;
-            gap: 0.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .size-btn {
-            flex: 1;
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 0.7rem;
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .size-btn.active {
-            border-color: var(--accent-gold);
-            background: rgba(212, 175, 55, 0.08);
-        }
-
-        .size-btn strong {
-            display: block;
-            font-size: 0.95rem;
-        }
-
-        .size-btn span {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--accent-gold);
-            margin-top: 0.2rem;
-            font-weight: 600;
-        }
-
-        .order-btn {
-            margin-top: auto;
-            width: 100%;
-            background: var(--btn-bg);
-            color: var(--btn-text);
-            border: none;
-            padding: 0.95rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-        }
-
-        .order-btn:hover {
-            opacity: 0.9;
-        }
-
-        .detail-wrapper {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .back-btn {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .detail-container {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2.5rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            align-items: start;
-        }
-
-        .detail-img {
-            width: 100%;
-            height: 480px;
-            object-fit: cover;
-            border-radius: 12px;
-            background: #111;
-        }
-
-        .detail-info h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
+            font-size: 1.4rem;
             margin-bottom: 0.5rem;
-        }
-
-        .detail-desc {
-            color: var(--text-muted);
-            margin: 1.5rem 0;
-            font-size: 1rem;
-        }
-
-        .recommendations-section {
-            margin-top: 4rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 3rem;
-            grid-column: span 2;
-        }
-
-        .recommendations-section h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .recommendations-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .rec-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1rem;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .rec-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-gold);
-        }
-
-        .rec-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 0.8rem;
-        }
-
-        .rec-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .reviews-section {
-            max-width: 1200px;
-            margin: 2rem auto 5rem auto;
-            padding: 2.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-        }
-
-        .reviews-section h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .reviews-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .review-card {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            border-radius: 12px;
         }
 
         footer {
@@ -451,11 +374,12 @@
             background: var(--bg-color);
             color: var(--text-muted);
             font-size: 0.9rem;
+            margin-top: 5rem;
         }
 
         @media (max-width: 768px) {
-            .detail-container { grid-template-columns: 1fr; padding: 1.5rem; }
-            .recommendations-grid { grid-template-columns: 1fr; }
+            .product-showcase { grid-template-columns: 1fr; gap: 2rem; padding: 0 1rem; }
+            .product-gallery { height: 400px; }
             footer { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
             nav { padding: 1.2rem 1.5rem; }
         }
@@ -465,139 +389,131 @@
 
     <nav>
         <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-        <a href="#" class="logo" onclick="showHome()">TAHA AZR PERFUMES</a>
+        <a href="#" class="logo" onclick="showHome()">TAHA AZR</a>
         <div class="nav-controls">
-            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">☀️ Light Mode</button>
+            <!-- استبدل # برابط إنستغرام الخاص بك -->
+            <a href="https://instagram.com/tahaazr_perfumes" target="_blank" class="instagram-top-btn">📷 Instagram</a>
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">☀️ Light</button>
         </div>
     </nav>
 
     <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h3 style="font-family: 'Cinzel', serif;">Menu</h3>
+            <h3 style="font-family: 'Cinzel', serif;">Navigation</h3>
             <button class="close-sidebar" onclick="toggleSidebar()">✕</button>
         </div>
         <ul class="sidebar-menu" id="sidebarMenu">
+            <li><a href="#" onclick="showHome(); toggleSidebar();">Home Store</a></li>
+            <li><a href="#" onclick="openProduct('LIBRE'); toggleSidebar();">YSL Libre Edition</a></li>
         </ul>
     </div>
 
-    <div id="homeView" class="view-section active">
-        <header class="hero-header">
-            <h1>TAHA AZR Luxury Perfumes</h1>
-            <p>Exquisite artisanal fragrances crafted with elegance and long-lasting distinction</p>
-        </header>
-
-        <main class="products-container" id="productsGrid">
-        </main>
-
-        <section class="reviews-section" id="reviews">
-            <h2>Customer Reviews & Ratings</h2>
-            <div class="reviews-list" id="reviewsList"></div>
-        </section>
-    </div>
-
-    <div id="detailView" class="view-section">
-        <div class="detail-wrapper">
-            <button class="back-btn" onclick="showHome()">← Back to Store</button>
-            <div class="detail-container" id="detailContent">
-            </div>
+    <!-- Main Product Showcase (Inspired by Verelune / YSL Libre) -->
+    <main class="product-showcase" id="mainProductView">
+        <div class="product-gallery">
+            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop" alt="Libre YSL Style Perfume">
         </div>
-    </div>
+        <div class="product-details-pane">
+            <div class="product-subtitle">The Icon of Freedom</div>
+            <h2>LIBRE SIGNATURE</h2>
+            <p class="product-description">
+                A grand floral sculpture with an uncompromising Parisian edge. The tension between the burning sensuality of Moroccan orange blossom and the bold, cool aromatic framework of French lavender.
+            </p>
+
+            <div class="notes-box">
+                <div class="note-item">
+                    <span>Top Notes</span>
+                    <strong>Lavender & Mandarin</strong>
+                </div>
+                <div class="note-item">
+                    <span>Heart Notes</span>
+                    <strong>Orange Blossom</strong>
+                </div>
+                <div class="note-item">
+                    <span>Base Notes</span>
+                    <strong>Vanilla & Amber</strong>
+                </div>
+            </div>
+
+            <label class="size-selection-label">Select Volume Size:</label>
+            <div class="sizes-grid">
+                <div class="size-option active" id="size50" onclick="selectSize('50ml', '220 AED')">
+                    <strong>50 ML</strong>
+                    <span>220 AED</span>
+                </div>
+                <div class="size-option" id="size100" onclick="selectSize('100ml', '320 AED')">
+                    <strong>100 ML</strong>
+                    <span>320 AED</span>
+                </div>
+            </div>
+
+            <a id="whatsappBtn" href="https://wa.me/971544741541?text=Hello,%20I%20would%20like%20to%20order%20LIBRE%20SIGNATURE%20(50ml)%20for%20220%20AED" class="cta-button" target="_blank">
+                ORDER VIA WHATSAPP (220 AED)
+            </a>
+        </div>
+    </main>
+
+    <!-- Collection Catalog Section -->
+    <section class="catalog-container" id="homeView">
+        <h2 class="catalog-title">Explore More Masterpieces</h2>
+        <div class="grid-cards" id="productsGrid">
+            <!-- سيتم تعبئتها ديناميكياً -->
+        </div>
+    </section>
 
     <footer>
         <div class="footer-brand">
             <h2>TAHA AZR PERFUMES</h2>
-            <p>Luxury fragrances crafted for unforgettable moments.</p>
+            <p>Crafted for unmatched luxury, elegance, and unforgettable presence.</p>
         </div>
         <div class="footer-links">
-            <h3>Quick Links</h3>
+            <h3>Connect</h3>
             <ul>
-                <li><a href="#" onclick="showHome()" style="color: var(--text-muted); text-decoration: none;">Home</a></li>
-                <li><a href="#reviews" onclick="showHome()" style="color: var(--text-muted); text-decoration: none;">Reviews</a></li>
+                <li><a href="https://instagram.com/tahaazr_perfumes" target="_blank" style="color: var(--text-muted); text-decoration: none;">Instagram Page</a></li>
+                <li><a href="https://wa.me/971544741541" target="_blank" style="color: var(--text-muted); text-decoration: none;">WhatsApp Customer Service</a></li>
             </ul>
         </div>
     </footer>
 
     <script>
-        // عطورك بالتصنيفات المبسطة
-        const perfumesData = {
-            "D BLACK": { 
-                name: "D BLACK", 
-                category: "MEN", 
-                img: "d-black.jpg", 
-                desc: "A bold night scent designed for the confident man who commands attention under the night skyline." 
-            },
-            "BERRY": { 
-                name: "BERRY", 
-                category: "WOMEN", 
-                img: "berry.jpg", 
-                desc: "A sweet, fruity masterpiece bursting with juicy strawberry and wild berry notes." 
-            },
-            "GUCCI MZ": { 
-                name: "GUCCI MZ", 
-                category: "UNISEX", 
-                img: "gucci-mz.jpg", 
-                desc: "A versatile, universal fragrance blending striking spicy and smooth notes under the lights of Dubai." 
-            },
-            "BAKARATH": { 
-                name: "BAKARATH", 
-                category: "MEN", 
-                img: "bakarath.jpg", 
-                desc: "An iconic rich oriental fragrance with unmatched longevity, inspired by golden luxury." 
-            },
-            "FAZZA": { 
-                name: "FAZZA", 
-                category: "WOMEN", 
-                img: "fazza.jpg", 
-                desc: "A royal feminine scent inspired by authentic heritage and contemporary luxury." 
-            },
-            "LEXUS": { 
-                name: "LEXUS", 
-                category: "WOMEN", 
-                img: "lexus.jpg", 
-                desc: "An alluring feminine fragrance filled with delicate floral essences and warm undertones." 
-            }
+        const perfumes = {
+            "LIBRE": { name: "LIBRE SIGNATURE", price50: "220 AED", price100: "320 AED" },
+            "D BLACK": { name: "D BLACK", price50: "220 AED", price100: "320 AED" },
+            "BERRY": { name: "BERRY CRUSH", price50: "220 AED", price100: "320 AED" },
+            "GUCCI MZ": { name: "GUCCI MZ", price50: "220 AED", price100: "320 AED" }
         };
 
-        // التقييمات الحقيقية الثابتة (تظهر لكل الزوار بشكل دائم وموثوق)
-        const realReviews = [
-            { name: "محمد الشامسي", rating: 5, comment: "عطر D BLACK فخم جداً وثباته عالي يطول اليوم كله، شكراً تاهال ع الإبداع." },
-            { name: "سارة أحمد", rating: 5, comment: "عطر Berry خيالي وريحته هادية وثابتة، حبيته كثير وصار عطري المفضلة." },
-            { name: "خالد المنصوري", rating: 5, comment: "أخذت Bakarath و Gucci MZ، الصراحة ريحة تجبرك تسأل عنها، فخامة بمعنى الكلمة." },
-            { name: "ريم الكعبي", rating: 5, comment: "عطر Lexus و Fazza قمة في الذوق والرقي، والتوصيل كان سريع جداً." }
-        ];
+        let currentSize = '50ml';
+        let currentPrice = '220 AED';
 
-        function renderProducts() {
-            const grid = document.getElementById('productsGrid');
-            const sidebarMenu = document.getElementById('sidebarMenu');
-            grid.innerHTML = '';
-            sidebarMenu.innerHTML = `<li><a href="#" onclick="showHome(); toggleSidebar();">Home / Store</a></li>`;
+        function selectSize(size, price) {
+            currentSize = size;
+            currentPrice = price;
             
-            for (let key in perfumesData) {
-                const p = perfumesData[key];
-                
-                const li = document.createElement('li');
-                li.innerHTML = `<a href="#" onclick="openProduct('${key}'); toggleSidebar();">${p.name}</a>`;
-                sidebarMenu.appendChild(li);
+            document.getElementById('size50').classList.remove('active');
+            document.getElementById('size100').classList.remove('active');
+            
+            if(size === '50ml') {
+                document.getElementById('size50').classList.add('active');
+            } else {
+                document.getElementById('size100').classList.add('active');
+            }
 
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.onclick = () => openProduct(key);
-                card.innerHTML = `
-                    <div class="product-img-box">
-                        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=600&auto=format&fit=crop'">
-                    </div>
-                    <div class="product-content">
-                        <div class="product-category">${p.category}</div>
-                        <h3 class="product-title">${p.name}</h3>
-                        <div class="sizes-selection" onclick="event.stopPropagation()">
-                            <div class="size-btn active"><strong>50 ml</strong><span>220 AED</span></div>
-                            <div class="size-btn"><strong>100 ml</strong><span>320 AED</span></div>
-                        </div>
-                        <a href="https://wa.me/971544741541?text=${encodeURIComponent('Hello, I would like to order ' + p.name + ' (50ml) for 220 AED')}" class="order-btn" onclick="event.stopPropagation()">Order via WhatsApp</a>
-                    </div>
-                `;
-                grid.appendChild(card);
+            const btn = document.getElementById('whatsappBtn');
+            btn.href = `https://wa.me/971544741541?text=${encodeURIComponent('Hello, I would like to order LIBRE SIGNATURE (' + size + ') for ' + price)}`;
+            btn.textContent = `ORDER VIA WHATSAPP (${price})`;
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggleBtn');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                btn.textContent = '🌙 Dark';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                btn.textContent = '☀️ Light';
             }
         }
 
@@ -606,116 +522,33 @@
             document.getElementById('overlay').classList.toggle('active');
         }
 
-        function toggleTheme() {
-            const body = document.body;
-            const btn = document.getElementById('themeToggleBtn');
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                btn.textContent = '🌙 Dark Mode';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                btn.textContent = '☀️ Light Mode';
-            }
-        }
-
         function showHome() {
-            document.getElementById('homeView').classList.add('active');
-            document.getElementById('detailView').classList.remove('active');
             window.scrollTo(0, 0);
         }
 
-        function openProduct(productName) {
-            const p = perfumesData[productName];
-            if (!p) return;
-
-            const allKeys = Object.keys(perfumesData).filter(k => k !== productName);
-            const shuffled = allKeys.sort(() => 0.5 - Math.random());
-            const recommendations = shuffled.slice(0, 3);
-
-            const detailContainer = document.getElementById('detailContent');
-            detailContainer.innerHTML = `
-                <div>
-                    <img src="${p.img}" alt="${p.name}" class="detail-img" onerror="this.src='https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=600&auto=format&fit=crop'">
-                </div>
-                <div class="detail-info">
-                    <div class="product-category">${p.category}</div>
-                    <h2>${p.name}</h2>
-                    <p class="detail-desc">${p.desc}</p>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-muted);">Select Size:</label>
-                        <div class="sizes-selection">
-                            <div class="size-btn active" id="detSize50" onclick="updateDetailPrice('50ml', '220 AED', '${p.name}')">
-                                <strong>50 ml</strong>
-                                <span>220 AED</span>
-                            </div>
-                            <div class="size-btn" id="detSize100" onclick="updateDetailPrice('100ml', '320 AED', '${p.name}')">
-                                <strong>100 ml</strong>
-                                <span>320 AED</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a id="detOrderBtn" href="https://wa.me/971544741541?text=${encodeURIComponent('Hello, I would like to order ' + p.name + ' (50ml) for 220 AED')}" class="order-btn" style="padding: 1.1rem; font-size: 1.05rem;">Order via WhatsApp (220 AED)</a>
-                </div>
-
-                <div class="recommendations-section">
-                    <h3>You May Also Like</h3>
-                    <div class="recommendations-grid">
-                        ${recommendations.map(recKey => {
-                            const rec = perfumesData[recKey];
-                            return `
-                                <div class="rec-card" onclick="openProduct('${recKey}')">
-                                    <img src="${rec.img}" alt="${rec.name}" class="rec-img" onerror="this.src='https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=600&auto=format&fit=crop'">
-                                    <div class="rec-title">${rec.name}</div>
-                                    <div style="color: var(--accent-gold); font-size: 0.8rem; margin-top: 0.3rem;">${rec.category}</div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('homeView').classList.remove('active');
-            document.getElementById('detailView').classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
-        function updateDetailPrice(size, price, perfumeName) {
-            document.getElementById('detSize50').classList.remove('active');
-            document.getElementById('detSize100').classList.remove('active');
-            if (size === '50ml') document.getElementById('detSize50').classList.add('active');
-            else document.getElementById('detSize100').classList.add('active');
-
-            const orderBtn = document.getElementById('detOrderBtn');
-            orderBtn.href = `https://wa.me/971544741541?text=${encodeURIComponent('Hello, I would like to order ' + perfumeName + ' (' + size + ') for ' + price)}`;
-            orderBtn.textContent = `Order via WhatsApp (${price})`;
+        function openProduct(key) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
-            loadReviews();
-        });
-
-        function loadReviews() {
-            const container = document.getElementById('reviewsList');
-            if (!container) return;
-
-            container.innerHTML = '';
-            realReviews.forEach(rev => {
-                const stars = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
+            const grid = document.getElementById('productsGrid');
+            for(let key in perfumes) {
+                if(key === 'LIBRE') continue;
+                const p = perfumes[key];
                 const card = document.createElement('div');
-                card.className = 'review-card';
+                card.className = 'card-item';
                 card.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                        <span style="font-weight: 700; font-size: 1.05rem;">${rev.name}</span>
-                        <span style="color: var(--accent-gold); font-size: 1.1rem;">${stars}</span>
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=600&auto=format&fit=crop" alt="${p.name}">
                     </div>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">${rev.comment}</p>
+                    <div class="card-body">
+                        <h3>${p.name}</h3>
+                        <p style="color: var(--accent-gold); font-size: 0.9rem; margin-top: 0.3rem; font-weight: 600;">From ${p.price50}</p>
+                    </div>
                 `;
-                container.appendChild(card);
-            });
-        }
+                grid.appendChild(card);
+            }
+        });
     </script>
 </body>
 </html>
